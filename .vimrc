@@ -1,0 +1,9 @@
+set nowrap
+set ruler
+set et
+set sw=3
+set tabstop=3
+set smarttab
+set list
+set listchars=tab:>.
+set cindent
