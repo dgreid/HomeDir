@@ -134,6 +134,15 @@
    ido-max-work-file-list      50   ; remember many
    ido-confirm-unique-completion t) ; wait for RET, even with unique completion
 
+;; google-region - search for the selected text in google
+(defun google-region (&optional flags)
+  "Google the selected region"
+  (interactive)
+  (let ((query (buffer-substring (region-beginning) (region-end))))
+    (browse-url (concat "http://www.google.com/search?ie=utf-8&oe=utf-8&q=" query))))
+;; press control-c g to google the selected region
+(global-set-key (kbd "C-c g") 'google-region)
+
 
 ; Dylan's function additions
 (defun dgr-add-bose-function-header ()
