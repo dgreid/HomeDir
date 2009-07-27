@@ -167,6 +167,9 @@
   <separator label="System" />
   <menu id="system-menu"/>
   <separator />
+  <item label="Hibernate">
+     <action name="Execute"><command>sudo pm-hibernate</command></action>
+   </item>
   <item label="Log Out">
     <action name="SessionLogout">
       <prompt>yes</prompt>
