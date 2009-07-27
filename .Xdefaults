@@ -1,0 +1,7 @@
+xterm*eightBitInput: false
+xterm*metaSendsEscape: true
+
+xterm*geometry:           80x25
+xterm*dynamicColors:      true
+xterm*utf8:               2
+xterm*saveLines:          9999
