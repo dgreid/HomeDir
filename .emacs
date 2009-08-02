@@ -36,7 +36,6 @@
 ;; show matching parens when cursor is near one
 (show-paren-mode t)
 (setq show-paren-style `mixed)
-(set-face-background 'show-paren-match-face "#aaaaaa")
 ;; update the copyright for a file before we save it
 (add-hook `before-save-hook `copyright-update)
 ;; spell check comments and strings on the fly
@@ -222,14 +221,6 @@ it only includes basic header information"
 (setq-default show-trailing-whitespace t)
 (setq ps-printer-name "//printserver/engsoftdev8150")
 
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "dark slate gray" :foreground "wheat" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :family "adobe-courier"))))
- '(scroll-bar ((t (:background "dark slate gray")))))
-(set-cursor-color "wheat")
 (require 'color-theme)
 (defun color-theme-dgr ()
   "Dylan's Emacs color theme"
