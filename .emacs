@@ -1,15 +1,5 @@
 (setq max-specpdl-size 3000)
 (setq max-lisp-eval-depth 5000)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(ecb-options-version "2.26")
- '(global-font-lock-mode t nil (font-lock))
- '(inhibit-startup-screen t)
- '(mouse-wheel-mode t nil (mwheel)))
-
 
 ;; Add local lisp folder to load-path
 (setq load-path (append load-path (list "~/elisp" "~/elisp/icicles" "~/elisp/color-theme-6.6.0")))
@@ -18,6 +8,9 @@
 (global-set-key [C-f2] 'goto-line)
 (global-set-key [C-f3] 'dgr-add-bose-function-header)
 (global-set-key [C-f4] 'dgr-insert-bose-file-header)
+
+(setq inhibit-startup-screen t)
+
 ;; don't let scrolling ramp up it is really annoying unless the file is HUGE
 (setq mouse-wheel-progressive-speed nil)
 
