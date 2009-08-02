@@ -356,4 +356,4 @@ it only includes basic header information"
 (tool-bar-mode nil)
 
 ;; finally load icicles
-(require 'icicles)
+;(require 'icicles)
