@@ -16,6 +16,8 @@
 
 ; I don't like transient mark mode on unless I do so automatically.
 (setq transient-mark-mode nil)
+; more emacs 23 stuff, make next line go to the real next line
+(setq line-move-visual nil)
 
 (setq c-default-style "bsd"
        c-basic-offset 3)
