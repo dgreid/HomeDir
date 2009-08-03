@@ -14,6 +14,9 @@
 ;; don't let scrolling ramp up it is really annoying unless the file is HUGE
 (setq mouse-wheel-progressive-speed nil)
 
+; I don't like transient mark mode on unless I do so automatically.
+(setq transient-mark-mode nil)
+
 (setq c-default-style "bsd"
        c-basic-offset 3)
 (setq-default indent-tabs-mode nil)
