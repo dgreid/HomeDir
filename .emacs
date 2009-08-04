@@ -28,8 +28,6 @@
 (setq next-line-add-newlines nil)
 (setq font-lock-maximum-decoration t)
 (setq-default column-number-mode t)
-(set-frame-height (selected-frame) 85)
-(set-frame-width (selected-frame) 101)
 (setq c-continued-statement-offset t)
 ;; show matching parens when cursor is near one
 (show-paren-mode t)
@@ -219,6 +217,9 @@ it only includes basic header information"
 (setq-default show-trailing-whitespace t)
 (setq ps-printer-name "//printserver/engsoftdev8150")
 
+(set-face-attribute 'default nil :height 100)
+
+; my color scheme
 (require 'color-theme)
 (defun color-theme-dgr ()
   "Dylan's Emacs color theme"
@@ -230,7 +231,6 @@ it only includes basic header information"
          (background-mode . dark))
        (bold ((t (:bold t))))
        (bold-italic ((t (:italic t :bold t))))
-       (default ((t (:font "-adobe-courier-medium-r-normal--14-100-100-100-m-90-iso8859-1"))))
        (font-lock-builtin-face ((t (:italic t :foreground "LightSteelBlue"))))
        (font-lock-comment-face ((t (:italic t :foreground "chocolate1"))))
        (font-lock-comment-delimiter-face ((t (:foreground "chocolate"))))
@@ -255,6 +255,26 @@ it only includes basic header information"
   '(progn
      (color-theme-initialize)
      (color-theme-dgr)))
+
+; new frame behavior
+(defun dgr-new-windowed-frame ()
+  (color-theme-dgr)
+  (set-frame-width (selected-frame) 101)
+  (set-cursor-color "wheat")
+)
+(defun dgr-new-tty-frame ()
+  (color-theme-tty-dark)
+)
+(defun dgr-new-frame (frame)
+  (let ((color-theme-is-global nil))
+    (select-frame frame)
+    (if (window-system frame)
+        (dgr-new-windowed-frame)
+      (dgr-new-tty-frame)
+      ))
+  )
+;; config any future frames
+(add-hook 'after-make-frame-functions 'dgr-new-frame)
 
 
 ;; save history for searches and my kill ring
