@@ -11,6 +11,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias vi='vim'
 alias ls='ls -F --color'
+alias e='emacsclient -c'
 export EDITOR=vi
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export SVNROOT=svn+ssh://svn.bose.com/svn/hepd
