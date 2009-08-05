@@ -175,6 +175,9 @@
       <prompt>yes</prompt>
     </action>
   </item>
+  <item label="Lock Screen">
+     <action name="Execute"><command>xscreensaver-command -l</command></action>
+  </item>
 </menu>
 
 </openbox_menu>
