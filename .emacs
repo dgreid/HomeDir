@@ -5,6 +5,7 @@
 (setq load-path (append load-path (list "~/elisp" "~/elisp/icicles" "~/elisp/color-theme-6.6.0")))
 
 (global-set-key [C-f1] 'compile)
+(setq compilation-scroll-output t)
 (global-set-key [C-f2] 'goto-line)
 (global-set-key [C-f3] 'dgr-add-bose-function-header)
 (global-set-key [C-f4] 'dgr-insert-bose-file-header)
