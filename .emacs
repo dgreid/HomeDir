@@ -5,7 +5,6 @@
 (setq load-path (append load-path (list "~/elisp" "~/elisp/icicles" "~/elisp/color-theme-6.6.0")))
 
 (global-set-key [C-f1] 'compile)
-(setq compilation-scroll-output t)
 (global-set-key [C-f2] 'goto-line)
 (global-set-key [C-f3] 'dgr-add-bose-function-header)
 (global-set-key [C-f4] 'dgr-insert-bose-file-header)
@@ -15,10 +14,16 @@
 ;; don't let scrolling ramp up it is really annoying unless the file is HUGE
 (setq mouse-wheel-progressive-speed nil)
 
-; I don't like transient mark mode on unless I do so automatically.
+; I don't like transient mark mode on unless I do so manually.
 (setq transient-mark-mode nil)
 ; more emacs 23 stuff, make next line go to the real next line
 (setq line-move-visual nil)
+
+;; I only need a few system to be parsed when compiling...
+(eval-after-load "compile"
+  '(progn
+     (setq compilation-error-regexp-alist (list 'gnu 'gcc-include))
+     ))
 
 (setq c-default-style "bsd"
        c-basic-offset 3)
