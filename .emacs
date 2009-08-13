@@ -395,3 +395,8 @@ it only includes basic header information"
 (defun sudo-edit-current-file ()
   (interactive)
   (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer)))))
+
+; mignight-mode will clean up un-used buffers at midnight
+(require 'midnight)
+(midnight-delay-set 'midnight-delay "4:30am")
+(setq clean-buffer-list-delay-general 1)
