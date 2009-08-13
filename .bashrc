@@ -20,6 +20,10 @@ export LARCH_PATH=/usr/local/splint-3.1.1/lib/
 export LCLIMPORTDIR=/usr/local/splint-3.1.1/imports/
 alias up='. ~/scripts/up'
 
+# make up arrow search backward
+bind '"\e[A"':history-search-backward
+bind '"\e[B"':history-search-forward
+
 #colors in the man pages
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m' # begin bold
