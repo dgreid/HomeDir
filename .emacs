@@ -382,5 +382,16 @@ it only includes basic header information"
 ;; finally load icicles
 ;(require 'icicles)
 
-;enabel window scrolling
+;enable window scrolling
 (put 'scroll-left 'disabled nil)
+
+; functions to use tramp to sudo-edit a file
+(defun sudo-edit (&optional arg)
+  (interactive "p")
+  (if arg
+      (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+(defun sudo-edit-current-file ()
+  (interactive)
+  (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer)))))
