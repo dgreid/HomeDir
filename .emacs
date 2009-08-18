@@ -18,6 +18,19 @@
 ;; don't let scrolling ramp up it is really annoying unless the file is HUGE
 (setq mouse-wheel-progressive-speed nil)
 
+;; Undo/redo window layouts with "C-c <left>" and "C-c <right>"
+(winner-mode 1)
+
+;; Drive out the mouse when it's too near to the cursor.
+(mouse-avoidance-mode 'animate)
+
+;; uniquify!
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator "|")
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
+
 ; I don't like transient mark mode on unless I do so manually.
 (setq transient-mark-mode nil)
 ; more emacs 23 stuff, make next line go to the real next line
