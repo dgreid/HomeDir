@@ -13,7 +13,7 @@
 
 ;; disable C-z on X11 sessions
 (when window-system
-(global-unset-key "\C-z")) 
+(global-unset-key "\C-z"))
 
 ;; don't let scrolling ramp up it is really annoying unless the file is HUGE
 (setq mouse-wheel-progressive-speed nil)
