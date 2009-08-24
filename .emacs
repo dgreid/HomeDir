@@ -418,3 +418,11 @@ it only includes basic header information"
 (require 'midnight)
 (midnight-delay-set 'midnight-delay "4:30am")
 (setq clean-buffer-list-delay-general 1)
+
+; org mode customization
+(defun dgr-org-mode-stuff ()
+  "Dylan's org mode customization"
+  (org-update-checkbox-count t)
+)
+
+(add-hook 'org-mode-hook 'dgr-org-mode-stuff)
