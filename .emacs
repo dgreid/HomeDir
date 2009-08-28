@@ -4,10 +4,17 @@
 ;; Add local lisp folder to load-path
 (setq load-path (append load-path (list "~/elisp" "~/elisp/icicles" "~/elisp/color-theme-6.6.0")))
 
+;; key bindings I am used to
 (global-set-key [C-f1] 'compile)
 (global-set-key [C-f2] 'goto-line)
 (global-set-key [C-f3] 'dgr-add-bose-function-header)
 (global-set-key [C-f4] 'dgr-insert-bose-file-header)
+(global-set-key (kbd "C-c r") 'revert-buffer)
+(global-set-key (kbd "C-c a") 'apropos)
+(define-key isearch-mode-map (kbd "C-o")
+  (lambda () (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
 
 (setq inhibit-startup-screen t)
 
