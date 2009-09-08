@@ -430,6 +430,7 @@ it only includes basic header information"
 (defun dgr-org-mode-stuff ()
   "Dylan's org mode customization"
   (org-update-checkbox-count t)
+  (visual-line-mode t)
 )
 
 (add-hook 'org-mode-hook 'dgr-org-mode-stuff)
