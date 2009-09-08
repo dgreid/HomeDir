@@ -1,0 +1,2 @@
+# ignore the auto-generated gtk configs that clutter .config
+gtk-2.0
