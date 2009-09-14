@@ -434,4 +434,11 @@ it only includes basic header information"
   (setq org-log-done t)
 )
 
+(defun dgr-load-org-work-agenda ()
+  "Dylan's work agenda"
+  (interactive)
+  (setq org-agenda-files (list "~/org/Defender"
+                               "~/org/Defender/status"))
+)
+
 (add-hook 'org-mode-hook 'dgr-org-mode-stuff)
