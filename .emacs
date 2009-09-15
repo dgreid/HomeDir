@@ -9,7 +9,7 @@
 (global-set-key [C-f2] 'goto-line)
 (global-set-key [C-f3] 'dgr-add-bose-function-header)
 (global-set-key [C-f4] 'dgr-insert-bose-file-header)
-(global-set-key (kbd "C-c r") 'revert-buffer)
+(global-set-key (kbd "C-c C-r") 'revert-buffer)
 (global-set-key (kbd "C-c a") 'apropos)
 (define-key isearch-mode-map (kbd "C-o")
   (lambda () (interactive)
@@ -433,5 +433,27 @@ it only includes basic header information"
   (visual-line-mode t)
   (setq org-log-done t)
 )
-
 (add-hook 'org-mode-hook 'dgr-org-mode-stuff)
+
+(defun dgr-load-org-work-agenda ()
+  "Dylan's work agenda"
+  (interactive)
+  (setq org-agenda-files (list "~/org/Defender"
+                               "~/org/Defender/status"))
+)
+
+(defun dgr-load-org-my-agenda ()
+  "Dylan's agenda"
+  (interactive)
+  (setq org-agenda-files (list "~/org"))
+)
+
+(org-remember-insinuate)
+(setq org-directory "~/org")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(define-key global-map "\C-cr" 'org-remember)
+
+(setq org-remember-templates
+      '(("Todo" ?t "** TODO %?\n" "~/org/notes.org" "New Tasks")
+        ("DefenderTodo" ?d "** TODO %?\n" "~/org/Defender/notes.org" "New Tasks")
+        ("Todo" ?t "** TODO %?\n %i \n %a" "~/org/Defender/notes.org" "Code Reminders")))
