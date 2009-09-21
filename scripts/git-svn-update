@@ -1,0 +1,3 @@
+#!/bin/sh
+git svn rebase
+git-svn-clone-externals
