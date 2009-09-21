@@ -431,6 +431,7 @@ it only includes basic header information"
   "Dylan's org mode customization"
   (org-update-checkbox-count t)
   (visual-line-mode t)
+  (flyspell-mode t)
   (setq org-log-done t)
 )
 (add-hook 'org-mode-hook 'dgr-org-mode-stuff)
