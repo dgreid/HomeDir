@@ -141,9 +141,9 @@ use_spacer no
 # stuff after 'TEXT' will be formatted on screen
 TEXT
 $alignr${color white}$loadavg ${color red}:: ${color white}${time %B %d %Y} ${color red}-[${color white}${time %R}${color red}]-${color white} ${time %Z}
-${if_existing /proc/acpi/battery/BAT0}
-$alignr${color white}Batt${color red}: ${color white}${battery BAT0}
+${if_existing /proc/acpi/battery/BAT0} \
+$alignr${color white}Batt0${color red}: ${color white}${battery BAT0}
 ${endif}
-${if_existing /proc/acpi/battery/BAT1}
-$alignr${color white}Batt${color red}: ${color white}${battery BAT1}
+${if_existing /proc/acpi/battery/BAT1} \
+$alignr${color white}Batt1${color red}: ${color white}${battery BAT1}
 ${endif}
