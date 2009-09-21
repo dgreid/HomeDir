@@ -438,7 +438,8 @@ it only includes basic header information"
 (defun dgr-load-org-work-agenda ()
   "Dylan's work agenda"
   (interactive)
-  (setq org-agenda-files (list "~/org/Defender"
+  (setq org-agenda-files (list "~/org/work"
+                               "~/org/Defender"
                                "~/org/Defender/status"))
 )
 
