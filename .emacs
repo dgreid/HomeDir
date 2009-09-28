@@ -93,6 +93,9 @@
     (require 'dtrt-indent)
     (dtrt-indent-mode t)))
 
+;; in c-mode we want to do some auto indentation, etc
+(require `dgr-c-auto-indent-stuff)
+
 ;; show trailing whitespace and tabs in c-mode
 (add-hook 'c-mode-common-hook
   (lambda()
