@@ -5,7 +5,7 @@
   (interactive)
   (if (eolp) (let (parens-require-spaces) (insert-pair)) (self-insert-command 1)))
 
-(add-hook 'c-mode-hook
+(add-hook 'c-mode-common-hook
           (lambda ()
             (define-key c-mode-map "\"" 'electric-pair)
             (define-key c-mode-map "\'" 'electric-pair)
