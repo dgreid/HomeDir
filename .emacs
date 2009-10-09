@@ -7,7 +7,7 @@
 ;; key bindings I am used to
 (global-set-key [C-f1] 'compile)
 (global-set-key [C-S-f1] 'kill-compilation)
-(global-set-key [C-f2] 'goto-line)
+(global-set-key [C-f2] 'recompile)
 (global-set-key [C-f3] 'dgr-add-bose-function-header)
 (global-set-key [C-f4] 'dgr-insert-bose-file-header)
 (global-set-key (kbd "C-c C-r") 'revert-buffer)
@@ -92,6 +92,9 @@
   (lambda()
     (require 'dtrt-indent)
     (dtrt-indent-mode t)))
+(add-hook 'c-mode-common-hook
+          (lambda()
+            (setq comment-auto-fill-only-comments t)))
 
 ;; in c-mode we want to do some auto indentation, etc
 (require `dgr-c-auto-indent-stuff)
