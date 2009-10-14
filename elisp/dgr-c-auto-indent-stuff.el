@@ -8,7 +8,6 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (define-key c-mode-base-map "\"" 'electric-pair)
-            (define-key c-mode-base-map "\'" 'electric-pair)
             (define-key c-mode-base-map "{" 'cheeso-insert-open-brace)))
 
 (defun cheeso-looking-back-at-regexp (regexp)
