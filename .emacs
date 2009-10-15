@@ -189,6 +189,14 @@
 
 
 ; Dylan's function additions
+(defun dgr-insert-c-delimiter (&optional d-text)
+  (interactive "sEnter Text: ")
+  (insert "/********** "
+          d-text
+          " **********/\n"
+          )
+  )
+
 (defun dgr-add-bose-function-header ()
   (interactive)
   (insert "////////////////////////////////////////////////////////////////////////////////\n"
