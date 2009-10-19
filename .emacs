@@ -79,6 +79,8 @@
 (add-hook `before-save-hook `copyright-update)
 ;; spell check comments and strings on the fly
 (add-hook `c-mode-common-hook `flyspell-prog-mode)
+;; use cscope if we can
+(require `xcscope)
 ;; hide-show code blocks
 (add-hook 'c-mode-common-hook
   (lambda()
