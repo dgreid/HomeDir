@@ -88,6 +88,8 @@
     (local-set-key (kbd "C-<left>")  'hs-hide-block)
     (local-set-key (kbd "C-<up>")    'hs-hide-all)
     (local-set-key (kbd "C-<down>")  'hs-show-all)
+    (local-set-key (kbd "M-.")       'cscope-find-global-definition)
+    (local-set-key (kbd "M-,")       'cscope-find-this-symbol)
     (hs-minor-mode t)))
 ;; dtrt-indent auto-detects the indentation style of a c file when it is opened
 (add-hook 'c-mode-common-hook
