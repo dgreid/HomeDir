@@ -81,6 +81,7 @@
 (add-hook `c-mode-common-hook `flyspell-prog-mode)
 ;; use cscope if we can
 (require `xcscope)
+(setq cscope-display-cscope-buffer-single-match nil) ; I just want to get to where I am going
 ;; hide-show code blocks
 (add-hook 'c-mode-common-hook
   (lambda()
