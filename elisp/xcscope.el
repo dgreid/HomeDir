@@ -372,6 +372,10 @@
 ;;      (default).  This variable can be set in order to reduce the
 ;;      number of keystrokes required to navigate through the matches.
 ;;
+;; "cscope-display-cscope-buffer-single-match"
+;;      If non-nil, display the cscope buffer as above even if only
+;;      one match is found (default).
+;;
 ;; "cscope-database-regexps"
 ;; 	List to force directory-to-cscope-database mappings.
 ;; 	This is a list of `(REGEXP DBLIST [ DBLIST ... ])', where:
@@ -744,6 +748,11 @@ for this to work."
   :type 'boolean
   :group 'cscope)
 
+(defcustom cscope-display-cscope-buffer-single-match t
+  "*If non-nil automatically display the *cscope* buffer after each search.
+Even if there is only one match found."
+  :type 'boolean
+  :group 'cscope)
 
 (defcustom cscope-stop-at-first-match-dir nil
   "*If non-nil, stop searching through multiple databases if a match is found.
@@ -1199,6 +1208,10 @@ directory should begin.")
 			(setq cscope-display-cscope-buffer
 			      (not cscope-display-cscope-buffer))
 			:style toggle :selected cscope-display-cscope-buffer ]
+		      [ "Auto display *cscope* buffer signle match"
+			(setq cscope-display-cscope-buffer-single-match
+			      (not cscope-display-cscope-buffer-single-match))
+			:style toggle :selected cscope-display-cscope-buffer-single-match ]
 		      [ "Stop at first matching database"
 			(setq cscope-stop-at-first-match-dir
 			      (not cscope-stop-at-first-match-dir))
@@ -1887,7 +1900,8 @@ using the mouse."
 	     (goto-char (point-max))))
        )
      ( cscope-first-match
-       (if cscope-display-cscope-buffer
+       (if (and cscope-display-cscope-buffer
+                (or cscope-matched-multiple cscope-display-cscope-buffer-single-match))
            (if (and cscope-edit-single-match (not cscope-matched-multiple))
                (cscope-show-entry-internal(car cscope-first-match)
                                            (cdr cscope-first-match) t))
