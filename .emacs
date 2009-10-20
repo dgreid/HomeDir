@@ -480,6 +480,7 @@ it only includes basic header information"
 (define-key global-map "\C-ca" 'org-agenda)
 
 (setq org-remember-templates
-      '(("Todo" ?t "** TODO %?\n" "~/org/notes.org" "New Tasks")
-        ("DefenderTodo" ?d "** TODO %?\n" "~/org/Defender/notes.org" "New Tasks")
+      '(("ToDo" ?t "** TODO %?\n" "~/org/notes.org" "New Tasks")
+        ("DefenderToDo" ?d "** TODO %?\n" "~/org/Defender/notes.org" "New Tasks")
+        ("WorkToDo" ?w "** TODO %?\n" "~/org/work/notes.org" "New Tasks")
         ("DefCodeReminder" ?c "** TODO %?\n %i \n %a" "~/org/Defender/notes.org" "Code Reminders")))
