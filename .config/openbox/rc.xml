@@ -333,6 +333,11 @@
         <command>xscreensaver-command -l</command>
       </action>
     </keybind>
+    <keybind key="W-S-x">
+      <action name="Execute">
+        <command>xterm -sb -sl 8192 -fg green -bg black</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>8</dragThreshold>
@@ -344,6 +349,12 @@
        screen while moving a window, in milliseconds (1000 = 1 second).
        Set this to 0 to disable warping -->
     <context name="Frame">
+      <mousebind button="W-Left" action="Drag">
+        <action name="Move"/>
+      </mousebind>
+      <mousebind button="W-Right" action="Drag">
+        <action name="Resize"/>
+      </mousebind>
       <mousebind button="A-Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
