@@ -212,6 +212,33 @@
         <wrap>no</wrap>
       </action>
     </keybind>
+    <!-- resize and move windows with keys -->
+    <keybind key="W-w" chroot="true">
+      <keybind key="i"><action name="MoveToEdgeNorth"/></keybind>
+      <keybind key="j"><action name="MoveToEdgeWest"/></keybind>
+      <keybind key="k"><action name="MoveToEdgeSouth"/></keybind>
+      <keybind key="l"><action name="MoveToEdgeEast"/></keybind>
+      <keybind key="Escape"><action name="BreakChroot"/></keybind>
+      <keybind key="Return"><action name="BreakChroot"/></keybind>
+      <keybind key="space"><action name="BreakChroot"/></keybind>
+    </keybind>
+    <keybind key="W-s" chroot="true">
+      <keybind key="W-s">
+        <action name="GrowToEdgeNorth"/>
+        <action name="GrowToEdgeSouth"/>
+        <action name="GrowToEdgeEast"/>
+        <action name="GrowToEdgeWest"/>
+        <action name="BreakChroot"/>
+      </keybind>
+      <keybind key="i"><action name="GrowToEdgeNorth"/></keybind>
+      <keybind key="j"><action name="GrowToEdgeWest"/></keybind>
+      <keybind key="k"><action name="GrowToEdgeSouth"/></keybind>
+      <keybind key="l"><action name="GrowToEdgeEast"/></keybind>
+      <keybind key="Escape"><action name="BreakChroot"/></keybind>
+      <keybind key="Return"><action name="BreakChroot"/></keybind>
+      <keybind key="space"><action name="BreakChroot"/></keybind>
+    </keybind>
+    <!-- switching windows by direction-->
     <keybind key="W-k">
       <action name="DirectionalFocusNorth">
         <dialog>yes</dialog>
