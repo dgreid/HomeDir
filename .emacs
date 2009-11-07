@@ -151,7 +151,9 @@
 ;; make gdb show all kinds of info
 (setq gdb-many-windows t)
 
+;; stuff that is disabled by default that I like.
 (put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
 ;; allow to jump between windows easier than "C-x o"
 (require 'windmove)
@@ -480,7 +482,7 @@ it only includes basic header information"
 (define-key global-map "\C-ca" 'org-agenda)
 
 (setq org-remember-templates
-      '(("ToDo" ?t "** TODO %?\n" "~/org/notes.org" "New Tasks")
+      '(("ToDo" ?t "** TODO %?\n" "~/org/tasks.org" "New Tasks")
         ("DefenderToDo" ?d "** TODO %?\n" "~/org/Defender/notes.org" "New Tasks")
         ("WorkToDo" ?w "** TODO %?\n" "~/org/work/notes.org" "New Tasks")
         ("DefCodeReminder" ?c "** TODO %?\n %i \n %a" "~/org/Defender/notes.org" "Code Reminders")))
