@@ -1,0 +1,18 @@
+[user]
+	email = dgreid@gmail.com
+	name = Dylan Reid
+[color]
+	status = auto
+	branch = auto
+	pager = true
+	interactive = auto
+	grep = auto
+	diff = auto
+	showbranch = auto
+[color "diff"]
+   new = white bold
+[alias]
+   ci = commit
+   co = checkout
+   st = status
+   br = branch
