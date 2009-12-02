@@ -1,0 +1,4 @@
+#!/bin/sh
+
+emacsclient -c --eval "(ediff-files \"$1\" \"$2\")"
+
