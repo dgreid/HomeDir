@@ -56,6 +56,13 @@
   (interactive)
   (text-scale-increase 0))
 
+;; indent regions after pasting them.
+(defadvice yank (after indent-region activate)
+  (if (member major-mode '(emacs-lisp-mode scheme-mode lisp-mode
+                                           c-mode c++-mode objc-mode
+                                           LaTeX-mode TeX-mode))
+      (indent-region (region-beginning) (region-end) nil)))
+
 ;; I only need a few system to be parsed when compiling...
 (eval-after-load "compile"
   '(progn
