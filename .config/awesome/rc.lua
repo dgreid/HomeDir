@@ -13,7 +13,7 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm -sb -sl 9999 -fg green -bg black"
-editor = os.getenv("EDITOR") or "nano"
+editor = os.getenv("EDITOR") or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -60,6 +60,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "firefox", "/usr/bin/firefox" },
                                     { "open terminal", terminal }
                                   }
                         })
