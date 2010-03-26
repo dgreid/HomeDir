@@ -1,7 +1,9 @@
 
 dwm: dwm-source
-	make -C dwm install PREFIX=/usr
+	make -C dwm
+	cp dwm/dwm ~/bin
 
 dwm-source:
 	hg clone http://hg.suckless.org/dwm
 	cp dwm.config.h dwm/config.h
+	patch -p0 < dwm-5.7.2-pertag.diff
