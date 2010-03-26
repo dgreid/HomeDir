@@ -1,4 +1,4 @@
-export PS1='\n\[\e[0;37m\]\w\n(\#)$ \[\e[m\]'
+export PS1='\[\e[0;37m\]\w(\#)$ \[\e[m\]'
 alias ll='ls -l'
 export GIBRALTAR_ROOT=:pserver:dr11423@gibraltar.bose.com:/home/epd/swrepository
 export GABRIEL_ROOT=:pserver:dr11423@gabriel.bose.com:/cvsroot
