@@ -34,7 +34,7 @@ static const Layout layouts[] = {
 };
 
 static const int default_layouts_per_tag[] = {
-   0, 0, 0, 0, 0, 0, 1, 0, 0, 0
+   0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0
 };
 
 /* key definitions */
