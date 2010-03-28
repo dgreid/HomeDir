@@ -1,0 +1,11 @@
+--- dwm/dwm.c.orig	2010-03-28 01:32:46.174804900 -0400
++++ dwm/dwm.c	2010-03-28 01:33:49.880652629 -0400
+@@ -1528,7 +1528,7 @@
+ 	/* init layouts */
+ 	for(m = mons; m; m = m->next) {
+ 		for(i=0; i < LENGTH(tags) + 1; i++) {
+-			m->lts[i] = &layouts[0];
++			m->lts[i] = &layouts[default_layouts_per_tag[i]];
+ 		}
+ 	}
+ 	/* init bars */
