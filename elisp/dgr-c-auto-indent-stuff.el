@@ -8,7 +8,7 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (define-key c-mode-base-map "\"" 'electric-pair)
-            (define-key c-mode-base-map "{" 'cheeso-insert-open-brace)))
+            (define-key c-mode-base-map (kbd "C-{") 'cheeso-insert-open-brace)))
 
 (defun cheeso-looking-back-at-regexp (regexp)
   "calls backward-sexp and then checks for the regexp.  Returns t if it is found, else nil"
