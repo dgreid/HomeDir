@@ -336,14 +336,13 @@ it only includes basic header information"
 (defun dgr-new-windowed-frame ()
   (if (require 'zenburn nil 'noerror)    ;; include zenburn if available
       (progn
-        (zenburn)                   ;; and use it
+        (color-theme-zenburn)                   ;; and use it
         )
     (progn
       (color-theme-dgr) ;; else use my local theme.
       (set-cursor-color "wheat")
       )
     )
-  (set-frame-width (selected-frame) 101)
 )
 (defun dgr-new-tty-frame ()
   (color-theme-tty-dark)
@@ -358,6 +357,10 @@ it only includes basic header information"
   )
 ;; config any future frames
 (add-hook 'after-make-frame-functions 'dgr-new-frame)
+
+;; default to zenburn
+(require 'zenburn)
+(color-theme-zenburn)
 
 ;; make sure to configure the first frame.
 (eval-after-load "color-theme"
