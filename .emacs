@@ -74,6 +74,15 @@
 (setq-default indent-tabs-mode nil)
 ;; confirm on exit
 (setq confirm-kill-emacs 'y-or-n-p)
+
+;; don't show the scroll bar,
+;;  if possible, show teh cool indiction in the mode line of buffer position
+(if (require 'sml-modeline nil 'noerror)    ;; use sml-modeline if available
+    (progn
+      (sml-modeline-mode 1)                   ;; show buffer pos in the mode line
+      )
+  )
+
 (scroll-bar-mode -1)
 (setq next-line-add-newlines nil)
 (setq font-lock-maximum-decoration t)
