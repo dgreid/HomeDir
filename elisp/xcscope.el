@@ -1900,11 +1900,9 @@ using the mouse."
 	     (goto-char (point-max))))
        )
      ( cscope-first-match
-       (if (and cscope-display-cscope-buffer
-                (or cscope-matched-multiple cscope-display-cscope-buffer-single-match))
-           (if (and cscope-edit-single-match (not cscope-matched-multiple))
-               (cscope-show-entry-internal(car cscope-first-match)
-                                           (cdr cscope-first-match) t))
+       (if (or cscope-matched-multiple cscope-display-cscope-buffer-single-match)
+           (progn (pop-to-buffer buffer)
+                  (cscope-help))
          (cscope-select-entry-specified-window old-buffer-window))
        )
      )
@@ -2071,13 +2069,10 @@ SENTINEL-FUNC are optional process filter and sentinel, respectively."
 	  (insert msg "\n"))
       (cscope-search-one-database)
       )
-    (if cscope-display-cscope-buffer
-	(progn
-	  (pop-to-buffer outbuf)
-	  (cscope-help))
-      (set-buffer outbuf))
-    (goto-char (point-max))
-    (cscope-list-entry-mode)
+
+      (set-buffer outbuf)
+      (goto-char (point-max))
+      (cscope-list-entry-mode)
     ))
 
 
