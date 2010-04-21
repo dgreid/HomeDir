@@ -512,3 +512,6 @@ it only includes basic header information"
         ("DefenderToDo" ?d "** TODO %?\n" "~/org/Defender/notes.org" "New Tasks")
         ("WorkToDo" ?w "** TODO %?\n" "~/org/work/notes.org" "New Tasks")
         ("DefCodeReminder" ?c "** TODO %?\n %i \n %a" "~/org/Defender/notes.org" "Code Reminders")))
+
+; git blame mode from git's contrib directory
+(require 'git-blame)
