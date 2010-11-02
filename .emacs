@@ -363,10 +363,10 @@ it only includes basic header information"
 (color-theme-zenburn)
 
 ;; make sure to configure the first frame.
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (dgr-new-frame (selected-frame))))
+;(eval-after-load "color-theme"
+;  '(progn
+;     (color-theme-initialize)
+;     (dgr-new-frame (selected-frame))))
 
 ;; save history for searches and my kill ring
 (setq savehist-additional-variables    ;; also save...
