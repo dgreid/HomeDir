@@ -69,9 +69,7 @@
      (setq compilation-error-regexp-alist (list 'gnu 'gcc-include))
      ))
 
-(setq c-default-style "bsd"
-       c-basic-offset 3)
-(setq-default indent-tabs-mode nil)
+(setq c-default-style "linux")
 ;; confirm on exit
 (setq confirm-kill-emacs 'y-or-n-p)
 
@@ -293,7 +291,6 @@ it only includes basic header information"
 (setq version-control 'never)     ; don't use version numbers for backup files
 (setq vc-make-backup-files nil)
 (setq make-backup-files nil)
-(setq default-tab-width 3)
 (setq-default show-trailing-whitespace t)
 (setq ps-printer-name "//printserver/engsoftdev8150")
 
