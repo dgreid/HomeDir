@@ -512,3 +512,21 @@ it only includes basic header information"
 
 ; git blame mode from git's contrib directory
 (require 'git-blame)
+
+; google specific configs
+(load-file "/home/build/public/eng/elisp/google.el")
+
+; google line-length enforcement
+(defun font-lock-width-keyword (width)
+  "Return a font-lock style keyword for a string beyond width WIDTH
+that uses 'font-lock-warning-face'."
+  `((,(format "^%s\\(.+\\)" (make-string width ?.))
+     (1 font-lock-warning-face t))))
+
+(font-lock-add-keywords 'c++-mode (font-lock-width-keyword 80))
+(font-lock-add-keywords 'java-mode (font-lock-width-keyword 100))
+(font-lock-add-keywords 'python-mode (font-lock-width-keyword 80))
+
+; use chrome
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")

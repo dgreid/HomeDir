@@ -30,3 +30,9 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 #git config
 source ~/.git-completion.bash
+
+#google p4 config
+export P4CONFIG=.p4config
+export P4DIFF=/home/build/public/google/tools/p4diff
+export P4MERGE=/home/build/public/eng/perforce/mergep4.tcl 
+export P4EDITOR=$EDITOR
