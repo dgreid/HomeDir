@@ -524,7 +524,7 @@ that uses 'font-lock-warning-face'."
      (1 font-lock-warning-face t))))
 
 (font-lock-add-keywords 'c++-mode (font-lock-width-keyword 80))
-(font-lock-add-keywords 'java-mode (font-lock-width-keyword 100))
+(font-lock-add-keywords 'java-mode (font-lock-width-keyword 80))
 (font-lock-add-keywords 'python-mode (font-lock-width-keyword 80))
 
 ; use chrome
