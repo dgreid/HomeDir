@@ -171,7 +171,7 @@
 
 ;; allow to jump between windows easier than "C-x o"
 (require 'windmove)
-(windmove-default-keybindings 'meta)
+(windmove-default-keybindings 'super)
 
 ;; easy and fast line number display toggling
 (require 'linum)
