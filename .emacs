@@ -2,15 +2,12 @@
 (setq max-lisp-eval-depth 5000)
 
 ;; Add local lisp folder to load-path
-(setq load-path (append load-path (list "~/elisp" "~/elisp/icicles" "~/elisp/color-theme-6.6.0")))
+(setq load-path (append load-path (list "~/elisp" "~/elisp/google" "~/elisp/icicles" "~/elisp/color-theme-6.6.0")))
 
 ;; key bindings I am used to
 (global-set-key [C-f1] 'compile)
 (global-set-key [C-S-f1] 'kill-compilation)
 (global-set-key [C-f2] 'recompile)
-(global-set-key [C-f3] 'dgr-add-bose-function-header)
-(global-set-key [C-f4] 'dgr-insert-bose-file-header)
-(global-set-key (kbd "C-c C-r") 'revert-buffer)
 (global-set-key (kbd "C-c C-a") 'apropos)
 (define-key isearch-mode-map (kbd "C-o")
   (lambda () (interactive)
@@ -129,38 +126,6 @@
           (lambda ()
             (font-lock-add-keywords nil
                                     '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
-
-;; etags-select pacgage allows for browsing multiple matches for a tag
-;;  without cycling through them
-(require `etags-select)
-;; using etags by default bothers me because it doesn't set the mark before jumping
-;; and it doesn't ask for a TAGS file if none is loaded.
-;(add-hook 'c-mode-common-hook
-;  (lambda()
-;    (local-set-key "\M-?" 'etags-select-find-tag-at-point)
-;    (local-set-key "\M-." 'etags-select-find-tag)))
-
-
-
-;; use gtags as it has better finding facilities than etag
-;; (require 'gtags)
-;; (defun dgr-next-gtag ()
-;;   "Find next matching tag, for GTAGS."
-;;   (interactive)
-;;   (let ((latest-gtags-buffer
-;;          (car (delq nil  (mapcar (lambda (x) (and (string-match "GTAGS SELECT" (buffer-name x)) (buffer-name x)) )
-;;                                  (buffer-list)) ))))
-;;     (cond (latest-gtags-buffer
-;;            (switch-to-buffer latest-gtags-buffer)
-;;            (next-line)
-;;            (gtags-select-it nil))
-;;           ) ))
-;; (global-set-key "\M-," 'dgr-next-gtag) ;; use M-, to move to the next find
-
-;; (add-hook 'c-mode-common-hook
-;;           (lambda ()
-;;             (gtags-mode 1)
-;;             ))
 
 ;; make gdb show all kinds of info
 (setq gdb-many-windows t)
