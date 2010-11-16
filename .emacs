@@ -252,12 +252,6 @@
 (require 'zenburn)
 (color-theme-zenburn)
 
-;; make sure to configure the first frame.
-;(eval-after-load "color-theme"
-;  '(progn
-;     (color-theme-initialize)
-;     (dgr-new-frame (selected-frame))))
-
 ;; save history for searches and my kill ring
 (setq savehist-additional-variables    ;; also save...
   '(search-ring regexp-search-ring kill-ring)    ;; ... my search entries
@@ -291,6 +285,7 @@
 ;; must set register n to the number to start at before using
 (fset 'inccommentnum
    "\C-s//\C-k\C-xrgn\C-u1\C-xr+n")
+
 ;; 'y' instead of 'yes'
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -298,12 +293,6 @@
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-list try-expand-line try-complete-lisp-symbol-partially try-complete-lisp-symbol))
 (global-set-key (kbd "M-/") 'hippie-expand)
 
-;;; psvn
-;;(setq svn-status-prefix-key '[(hyper s)])
-;;(require 'psvn)
-;;(define-key svn-log-edit-mode-map [f6] 'svn-log-edit-svn-diff)
-
-(require 'vc-svn)
 
 ;;; Matlab-mode setup:
 
@@ -380,9 +369,7 @@
 (defun dgr-load-org-work-agenda ()
   "Dylan's work agenda"
   (interactive)
-  (setq org-agenda-files (list "~/org/work"
-                               "~/org/Defender"
-                               "~/org/Defender/status"))
+  (setq org-agenda-files (list "~/"))
 )
 
 (defun dgr-load-org-my-agenda ()
