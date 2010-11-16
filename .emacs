@@ -229,53 +229,6 @@
           )
   )
 
-;; pick out what kind of file we're dealing with and insert an appropriate
-;; header block
-(defun dgr-insert-bose-file-header ()
-  "Checks the buffer name to get the filename; If extension is {h,hpp}, inserts
-include guards and other header file information.  If extension is {c,cpp,cc},
-it only includes basic header information"
-  (interactive)
-  (let* ((filename (buffer-name))
-         (basename (file-name-sans-extension filename))
-         (extension (file-name-extension filename)))
-    (goto-char (point-min))
-    (cond
-     ((or (string= extension "h")
-          (string= extension "hpp"))
-      (dgr-insert-bose-header-file-header basename extension))
-     ((or (string= extension "cpp")
-          (string= extension "c")
-          (string= extension "cc")
-          (string= extension "c++"))
-      (dgr-insert-bose-cpp-file-header basename))))
-  )
-
-;; insert a nice doxygen file documentation block and preprocessor template
-(defun dgr-insert-bose-header-file-header (basename extension)
-  (interactive)
-  (dgr-insert-bose-cpp-file-header basename)
-  (insert "#ifndef _" (upcase basename) "_" (upcase extension) "_\n"
-          "#define _" (upcase basename) "_" (upcase extension) "_\n\n")
-  (goto-char (point-max))
-  (move-beginning-of-line nil)
-  (insert "\n#endif //_" (upcase basename) "_" (upcase extension) "_\n")
-  (move-beginning-of-line -1)
-  )
-
-;; insert a nice doxygen file documentation block
-(defun dgr-insert-bose-cpp-file-header (basename)
-  (interactive)
-  (insert "////////////////////////////////////////////////////////////////////////////////\n"
-          "/// @file          " (file-name-nondirectory (buffer-file-name)) "\n"
-          "/// @brief\n"
-          "/// @author        Dylan Reid\n"
-          "/// @date          " (format-time-string "%B %d %Y") "\n"
-          "/// Copyright      " (format-time-string "%Y") "\n"
-          "////////////////////////////////////////////////////////////////////////////////\n"
-          )
-  )
-
 ;; use bash when we run a shell
 (setq shell-file-name "bash")
 ;set window height of the compilation buffer
