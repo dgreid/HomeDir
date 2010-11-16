@@ -71,7 +71,7 @@
 (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; don't show the scroll bar,
-;;  if possible, show teh cool indiction in the mode line of buffer position
+;;  if possible, show the cool indiction in the mode line of buffer position
 (if (require 'sml-modeline nil 'noerror)    ;; use sml-modeline if available
     (progn
       (sml-modeline-mode 1)                   ;; show buffer pos in the mode line
@@ -82,12 +82,9 @@
 (setq next-line-add-newlines nil)
 (setq font-lock-maximum-decoration t)
 (setq-default column-number-mode t)
-(setq c-continued-statement-offset t)
 ;; show matching parens when cursor is near one
 (show-paren-mode t)
 (setq show-paren-style `mixed)
-;; update the copyright for a file before we save it
-(add-hook `before-save-hook `copyright-update)
 ;; spell check comments and strings on the fly
 (add-hook `c-mode-common-hook `flyspell-prog-mode)
 ;; use cscope if we can
