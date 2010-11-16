@@ -292,7 +292,6 @@ it only includes basic header information"
 (setq vc-make-backup-files nil)
 (setq make-backup-files nil)
 (setq-default show-trailing-whitespace t)
-(setq ps-printer-name "//printserver/engsoftdev8150")
 
 (set-face-attribute 'default nil :height 100)
 
