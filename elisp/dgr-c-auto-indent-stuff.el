@@ -67,8 +67,6 @@
    ;; else, it's a new scope.
    ;; therefore, insert paired braces with an intervening newline, and indent everything appropriately.
    (t
-    (if (cheeso-prior-sexp-same-statement-same-line)
-        (newline-and-indent))
     (self-insert-command 1)
     (c-indent-line-or-region)
     (end-of-line)
