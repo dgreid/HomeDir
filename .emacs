@@ -208,27 +208,6 @@
 ;; press control-c g to google the selected region
 (global-set-key (kbd "C-c g") 'google-region)
 
-
-; Dylan's function additions
-(defun dgr-insert-c-delimiter (&optional d-text)
-  (interactive "sEnter Text: ")
-  (insert "/********** "
-          d-text
-          " **********/\n"
-          )
-  )
-
-(defun dgr-add-bose-function-header ()
-  (interactive)
-  (insert "////////////////////////////////////////////////////////////////////////////////\n"
-          "/// @brief\n"
-          "///\n"
-          "/// @param\n"
-          "/// @return\n"
-          "////////////////////////////////////////////////////////////////////////////////\n"
-          )
-  )
-
 ;; use bash when we run a shell
 (setq shell-file-name "bash")
 ;set window height of the compilation buffer
