@@ -149,7 +149,7 @@
 (setq
    ido-ignore-buffers               ; ignore these guys
    '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido")
-   ido-work-directory-list '("/scratch/BalboaLPM/LPMcode/" "/scratch/BalboaLPM/cc2500_driver/")
+   ido-work-directory-list '("~" "/~/src")
    ido-use-filename-at-point nil    ; don't use filename at point (annoying)
    ido-case-fold  nil               ; be case-sensitive
    ido-use-url-at-point nil         ;  don't use url at point (annoying)
@@ -369,7 +369,7 @@
 (defun dgr-load-org-work-agenda ()
   "Dylan's work agenda"
   (interactive)
-  (setq org-agenda-files (list "~/"))
+  (setq org-agenda-files (list "~/org_google"))
 )
 
 (defun dgr-load-org-my-agenda ()
@@ -410,3 +410,7 @@ that uses 'font-lock-warning-face'."
 ; use chrome
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
+
+; don't auto-split windows
+(setq split-width-threshold nil)
+(setq split-height-threshold nil)
