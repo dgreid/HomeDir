@@ -1,0 +1,4 @@
+XTerm*metaSendsExcape: true
+XTerm*eightBitInput: false
+#include "/home/dgreid/.xrdb/look-zenburn.xrdb"
+#include "/home/dgreid/.xrdb/xterm.xrdb"

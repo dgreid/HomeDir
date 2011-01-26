@@ -1,7 +1,7 @@
-export PS1='\[\e[0;37m\]\w(\#)$ \[\e[m\]'
+export PS1="\[\e[1;30m\]\W:$ \[\e[m\]"
 alias ll='ls -l'
 alias rmback='rm *~'
-alias xterm='xterm -sb -fg green -bg black -title xterm -e bash'
+alias xterm='xterm -sb -title xterm -e bash'
 export PATH=~/scripts:~/bin:$PATH
 alias mv='mv -i'
 alias cp='cp -i'
