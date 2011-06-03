@@ -9,6 +9,7 @@ alias vi='vim'
 alias ls='ls -F --color'
 alias e='emacsclient -c'
 alias et='emacsclient -t'
+alias j='jobs'
 export EDITOR=vi
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 # for splint
@@ -36,3 +37,5 @@ export P4CONFIG=.p4config
 export P4DIFF=/home/build/public/google/tools/p4diff
 export P4MERGE=/home/build/public/eng/perforce/mergep4.tcl 
 export P4EDITOR=$EDITOR
+
+alias cdg='cd /scratch/gtv-android'
