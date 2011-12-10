@@ -1208,7 +1208,7 @@ directory should begin.")
 			(setq cscope-display-cscope-buffer
 			      (not cscope-display-cscope-buffer))
 			:style toggle :selected cscope-display-cscope-buffer ]
-		      [ "Auto display *cscope* buffer signle match"
+		      [ "Auto display *cscope* buffer single match"
 			(setq cscope-display-cscope-buffer-single-match
 			      (not cscope-display-cscope-buffer-single-match))
 			:style toggle :selected cscope-display-cscope-buffer-single-match ]

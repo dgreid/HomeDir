@@ -1,5 +1,5 @@
 [user]
-	email = dgreid@google.com
+	email = dgreid@chromium.org
 	name = Dylan Reid
 [color]
 	status = auto
@@ -11,9 +11,20 @@
 	showbranch = auto
 [color "diff"]
    new = white bold
+[core]
+   excludesfile = /home/dgreid/.gitignore
 [alias]
    ci = commit
    co = checkout
    st = status
    br = branch
    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+   rs = remote show
+   rsn = remote show -n
+   chp = cherry-pick
+   shst = show --stat
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+[rerere]
+	enabled = 1

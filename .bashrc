@@ -2,7 +2,7 @@ export PS1="\[\e[1;30m\]\W:$ \[\e[m\]"
 alias ll='ls -l'
 alias rmback='rm *~'
 alias xterm='xterm -sb -title xterm -e bash'
-export PATH=~/scripts:~/bin:$PATH
+export PATH=~/scripts:~/bin:$PATH:/scratch/cros/chromite/bin
 alias mv='mv -i'
 alias cp='cp -i'
 alias vi='vim'
@@ -39,3 +39,4 @@ export P4MERGE=/home/build/public/eng/perforce/mergep4.tcl
 export P4EDITOR=$EDITOR
 
 alias cdg='cd /scratch/gtv-android'
+alias cdc='cd /scratch/cros'
