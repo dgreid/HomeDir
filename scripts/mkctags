@@ -1,0 +1,45 @@
+#!/bin/zsh
+# TODO: provide arguments/options ?
+
+# Reset options to defaults
+emulate -L zsh
+
+setopt rc_expand_param    # a${x}d with x=(b c) generates abd acd.
+
+local files
+local extensions
+
+extensions=(
+    ".S"
+    ".m"
+    ".mm"
+    ".h"
+    ".c"
+    ".cc"
+    ".cpp"
+    ".java"
+    ".py"
+)
+
+find_criteria_names=('(' ${(j[ -o ])=${:-"-iname *"${extensions}}} ')')
+# show_args ${=find_criteria_names}
+
+local TAG_FILE=./tags
+
+# find . ${=find_criteria_names} -print
+
+rm -fr ${TAG_FILE}
+#find . ${=find_criteria_names} -print0 | \
+#    xargs -0 etags --append --members -o ${TAG_FILE}
+
+# etags/ctags shipped with emacs-23.1 has a bug mangling file names
+# starting with "./", so we need to strip that prefix. Much fun
+# with IFS and NULs.
+SAVED_IFS=$IFS
+IFS=$'\0'
+for file in $(find . \( -name out -prune \) -o \( -type f ${=find_criteria_names}  -print0 \) ); do
+  if [[ -n ${file} ]]; then
+    print -N "${file#./}"
+  fi
+done | xargs -0 ctags-exuberant --append -o ${TAG_FILE}
+IFS=${SAVED_IFS}

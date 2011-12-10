@@ -1,0 +1,2 @@
+#!/bin/sh
+find . -name '*.java' | xargs grep -n -e "$1"

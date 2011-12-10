@@ -1,0 +1,2 @@
+#!/bin/sh
+find . -name '*.xml' -print0 | xargs -0 grep -n -e "$1"
