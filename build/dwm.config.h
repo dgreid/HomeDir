@@ -2,11 +2,11 @@
 
 /* appearance */
 static const char font[]            = "-*-*-medium-*-*-*-14-*-*-*-*-*-*-*";
-static const char normbordercolor[] = "#cccccc";
+static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#cccccc";
 static const char normfgcolor[]     = "#000000";
-static const char selbordercolor[]  = "#0066ff";
-static const char selbgcolor[]      = "#0066ff";
+static const char selbordercolor[]  = "#ffffff";
+static const char selbgcolor[]      = "#1f1f1f";
 static const char selfgcolor[]      = "#ffffff";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -24,6 +24,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster      = 1;    /* number of clients in master area */
 static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
