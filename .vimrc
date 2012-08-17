@@ -95,3 +95,6 @@ augroup vimrc_autocmds
     autocmd BufEnter,BufReadPost,BufNewFile * highlight ExtraWhitespace ctermbg=darkmagenta
     autocmd BufEnter,BufReadPost,BufNewFile * 2match ExtraWhitespace /\s\+$\| \+\ze\t/
 augroup END
+
+call pathogen#infect()
+call pathogen#helptags()
