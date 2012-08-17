@@ -10,6 +10,7 @@ alias ls='ls -F --color'
 alias e='emacsclient -c'
 alias et='emacsclient -t'
 alias j='jobs'
+alias menu='/google/data/ro/projects/menu/menu.par'
 export EDITOR=vi
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 # for splint
