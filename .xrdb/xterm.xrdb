@@ -76,8 +76,8 @@
 
 /* XTerm*saveLines:               4096 */
 /* XTerm*cursorBlink:             true */
-/* XTerm*scrollBar:               false */
-/* XTerm*visualBell:              true */
+XTerm*scrollBar:               false
+XTerm*visualBell:              true
 
 
 /* Normally, you should not have to edit anything below.  */

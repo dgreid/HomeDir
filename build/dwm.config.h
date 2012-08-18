@@ -51,7 +51,7 @@ static const int default_layouts_per_tag[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "xterm", "-sb", "-sl", "9999", "-bg", "black", "-fg", "green", NULL };
+static const char *termcmd[]  = { "xterm", "-sb", "-sl", "9999", NULL };
 static const char *lockcmd[]  = { "xscreensaver-command", "-l", NULL };
 
 static Key keys[] = {
