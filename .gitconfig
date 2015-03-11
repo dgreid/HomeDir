@@ -24,6 +24,8 @@
    rsn = remote show -n
    chp = cherry-pick
    shst = show --stat
+   rbc = rebase --continue
+   rbs = rebase --skip
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
