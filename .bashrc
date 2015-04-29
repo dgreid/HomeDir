@@ -9,6 +9,7 @@ alias ls='ls -F --color'
 alias j='jobs'
 alias menu='/google/data/ro/projects/menu/menu.par'
 export EDITOR=vim
+alias tmux='TERM=xterm-256color tmux'
 
 # make up arrow search backward
 bind '"\e[A"':history-search-backward
