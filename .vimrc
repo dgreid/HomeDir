@@ -64,6 +64,8 @@ set fo-=t
 set window=91
 set wildchar=<Tab> wildmenu wildmode=longest,list,full
 nmap <SPACE> :noh<CR>
+imap jk <Esc>
+nnoremap Y y$
 " motion keys in insert mode
 "inoremap <c-j> <c-o>j
 "inoremap <c-k> <c-o>k
