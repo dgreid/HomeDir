@@ -93,6 +93,8 @@ augroup vimrc_autocmds
     au!
     autocmd BufEnter,BufReadPost,BufNewFile * highlight TooLong ctermbg=darkmagenta
     autocmd BufReadPost,BufReadPost,BufNewFile *.c,*.cc,*.h,*.cpp,*.java,*.inl match TooLong /\%>80v./
+    autocmd BufReadPost,BufReadPost,BufNewFile *.c,*.h set cindent
+    autocmd BufReadPost,BufReadPost,BufNewFile *.c,*.h set cinoptions=:0,l1,t0,g0,(0
     autocmd BufReadPost,BufReadPost,BufNewFile *pulseaudio/*.c,*pulseaudio/*.h match TooLong /\%>128v./
     autocmd BufEnter,BufReadPost,BufNewFile * highlight ExtraWhitespace ctermbg=darkmagenta
     autocmd BufEnter,BufReadPost,BufNewFile * 2match ExtraWhitespace /\s\+$\| \+\ze\t/
