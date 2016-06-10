@@ -89,6 +89,7 @@ nnoremap Y y$
 "cnoremap <M-d> <c-o>dw
 "cnoremap <c-d> <c-o>x
 " vim: set ft=vim :
+runtime! ftplugin/man.vim
 augroup vimrc_autocmds
     au!
     autocmd BufEnter,BufReadPost,BufNewFile * highlight TooLong ctermbg=darkmagenta
