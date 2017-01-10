@@ -2,3 +2,7 @@ XTerm*metaSendsExcape: true
 XTerm*eightBitInput: false
 #include "/home/dgreid/.xrdb/look-zenburn.xrdb"
 #include "/home/dgreid/.xrdb/xterm.xrdb"
+XTerm*renderFont: true
+XTerm*faceName: Inconsolata
+XTerm*faceSize: 10
+XTerm*ScrollBar: false
