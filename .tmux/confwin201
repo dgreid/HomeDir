@@ -2,5 +2,5 @@ split-window -h
 split-window -h
 split-window -h
 select-layout main-vertical
-resize-pane -t 0 -x 220
+resize-pane -t 0 -x 201
 select-pane -t 0
