@@ -1,13 +1,9 @@
 export PS1="\[\e[1;30m\]\W:$ \[\e[m\]"
 alias ll='ls -l'
-alias rmback='rm *~'
-alias xterm='xterm -sb -title xterm -e bash'
 alias mv='mv -i'
 alias cp='cp -i'
-alias vi='vim'
 alias ls='ls -F --color'
 alias j='jobs'
-alias menu='/google/data/ro/projects/menu/menu.par'
 export EDITOR=vim
 alias tmux='TERM=xterm-256color tmux'
 
