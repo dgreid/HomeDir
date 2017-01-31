@@ -1,8 +1,12 @@
 XTerm*metaSendsExcape: true
 XTerm*eightBitInput: false
-#include "/home/dgreid/.xrdb/look-zenburn.xrdb"
-#include "/home/dgreid/.xrdb/xterm.xrdb"
+xterm*dynamicColors:      true
+xterm*utf8:               2
+#include "/usr/local/google/home/dgreid/.xrdb/look-zenburn.xrdb"
+#include "/usr/local/google/home/dgreid/.xrdb/xterm.xrdb"
 XTerm*renderFont: true
 XTerm*faceName: Inconsolata
 XTerm*faceSize: 10
 XTerm*ScrollBar: false
+xterm*saveLines:          9999
+xterm*termName:           xterm-256color

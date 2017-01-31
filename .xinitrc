@@ -1,3 +1,6 @@
+#!/bin/sh
+xscreensaver &
 xset b off
-~/scripts/setroottotime.sh &
-~/scripts/rundwm.sh
+xmodmap ~/.x_key_swap
+xrdb -merge ~/.Xresources
+exec /usr/bin/dwm
