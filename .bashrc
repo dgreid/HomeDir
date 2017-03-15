@@ -1,4 +1,5 @@
-export PS1="\[\e[1;30m\]\W:$ \[\e[m\]"
+#ezprompt.net generated bash prompt
+export PS1="\[\e[33m\]\W\[\e[m\]\[\e[33m\]\\$\[\e[m\] "
 alias ll='ls -l'
 alias mv='mv -i'
 alias cp='cp -i'
