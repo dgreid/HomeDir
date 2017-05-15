@@ -51,12 +51,12 @@ font:
     # style: Italic
 
   # Point size of the font
-  size: 9.0
+  size: 8.0
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 2.2
-    y: -3.0
+    x: 1.0
+    y: 0.0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -211,6 +211,7 @@ key_bindings:
   - { key: Insert,                  chars: "\x1b[2~"                     }
   - { key: Delete,                  chars: "\x1b[3~",  mode: AppKeypad   }
   - { key: Delete,                  chars: "\x1b[P",   mode: ~AppKeypad  }
+  - { key: Insert,   mods: Shift,   action: PasteSelection               }
 
 # Mouse bindings
 #
