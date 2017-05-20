@@ -85,7 +85,7 @@ colors:
   # Normal colors
   normal:
     black:   '0x1f1f1f'
-    red:     '0x705050'
+    red:     '0xf00000'
     green:   '0x60b48a'
     yellow:  '0xdfaf8f'
     blue:    '0x506070'
@@ -96,7 +96,7 @@ colors:
   # Bright colors
   bright:
     black:   '0x1f1f1f'
-    red:     '0x705050'
+    red:     '0xf08080'
     green:   '0x60b48a'
     yellow:  '0xf0dfaf'
     blue:    '0x94bff3'
