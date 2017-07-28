@@ -90,15 +90,18 @@ nnoremap Y y$
 "cnoremap <c-d> <c-o>x
 " vim: set ft=vim :
 runtime! ftplugin/man.vim
+highlight ColorColumn ctermbg=DarkGrey
+highlight ExtraWhitespace ctermbg=darkmagenta
+highlight TooLong ctermbg=darkmagenta
 augroup vimrc_autocmds
     au!
-    autocmd BufEnter,BufReadPost,BufNewFile * highlight TooLong ctermbg=darkmagenta
+    autocmd FileType rust set tabstop=4|set shiftwidth=4|set expandtab
+    autocmd BufEnter,BufReadPost,BufNewFile *.rs match TooLong /\%>100v./
     autocmd BufReadPost,BufReadPost,BufNewFile *.c,*.cc,*.h,*.cpp,*.java,*.inl match TooLong /\%>80v./
     autocmd BufReadPost,BufReadPost,BufNewFile *.c,*.h set cindent
     autocmd BufReadPost,BufReadPost,BufNewFile *.c,*.h set cinoptions=:0,l1,t0,g0,(0
-    autocmd BufReadPost,BufReadPost,BufNewFile *pulseaudio/*.c,*pulseaudio/*.h match TooLong /\%>128v./
-    autocmd BufEnter,BufReadPost,BufNewFile * highlight ExtraWhitespace ctermbg=darkmagenta
     autocmd BufEnter,BufReadPost,BufNewFile * 2match ExtraWhitespace /\s\+$\| \+\ze\t/
+    autocmd FileType gitcommit set tw=72|set spell|set wrap|set colorcolumn=+1|set fo+=t
 augroup END
 
 call pathogen#infect()
