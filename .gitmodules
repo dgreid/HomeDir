@@ -1,0 +1,6 @@
+[submodule ".vim/pack/default/start/rust"]
+	path = .vim/pack/default/start/rust
+	url = https://github.com/rust-lang/rust.vim.git
+[submodule ".vim/pack/default/start/vim-aldermis"]
+	path = .vim/pack/default/start/vim-aldermis
+	url = git://github.com/veloce/vim-aldmeris.git
