@@ -4,3 +4,6 @@
 [submodule ".vim/pack/default/start/vim-aldermis"]
 	path = .vim/pack/default/start/vim-aldermis
 	url = git://github.com/veloce/vim-aldmeris.git
+[submodule ".vim/pack/default/start/Zenburn"]
+	path = .vim/pack/default/start/Zenburn
+	url = https://github.com/jnurmine/Zenburn
