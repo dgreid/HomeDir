@@ -1,0 +1,6 @@
+split-window -h
+split-window -h
+split-window -h
+select-layout main-vertical
+resize-pane -t 1 -x 101
+select-pane -t 0
