@@ -22,3 +22,4 @@ imap jk <Esc>
 set smartindent
 set smarttab
 syntax on
+let c_space_errors = 1
