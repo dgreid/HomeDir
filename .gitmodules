@@ -10,3 +10,6 @@
 [submodule ".vim/pack/opt/vim-orgmode"]
 	path = .vim/pack/default/opt/vim-orgmode
 	url = https://github.com/jceb/vim-orgmode.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh
