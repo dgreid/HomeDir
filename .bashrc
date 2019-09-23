@@ -22,5 +22,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 export PATH=$PATH:~/bin:~/.cargo/bin
 
+set bell-style none
+
 #git config
 source ~/.git-completion.bash

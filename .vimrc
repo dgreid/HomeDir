@@ -24,5 +24,7 @@ set smarttab
 syntax on
 let c_space_errors = 1
 
+set vb t_vb=     " no visual bell
+
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = 'rustup run stable rustfmt'
