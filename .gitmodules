@@ -7,3 +7,6 @@
 [submodule ".vim/pack/default/start/Zenburn"]
 	path = .vim/pack/default/start/Zenburn
 	url = https://github.com/jnurmine/Zenburn
+[submodule ".vim/pack/opt/vim-orgmode"]
+	path = .vim/pack/default/opt/vim-orgmode
+	url = https://github.com/jceb/vim-orgmode.git
