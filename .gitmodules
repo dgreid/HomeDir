@@ -10,3 +10,6 @@
 [submodule ".vim/pack/opt/vim-orgmode"]
 	path = .vim/pack/default/opt/vim-orgmode
 	url = https://github.com/jceb/vim-orgmode.git
+[submodule ".vim/pack/default/start/speeddating"]
+	path = .vim/pack/default/start/speeddating
+	url = https://tpope.io/vim/speeddating.git
