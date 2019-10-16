@@ -37,3 +37,33 @@ set wildignore+=*.pdf,*.psd,*.o
 
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = 'rustup run stable rustfmt'
+
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+             \ 'name': 'rls',
+             \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+             \ 'whitelist': ['rust'],
+             \ })
+    autocmd FileType rust setlocal omnifunc=lsp#complete
+endif
+
+if executable('clangd')
+    augroup lsp_clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'clangd',
+                    \ 'cmd': {server_info->['clangd']},
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    \ })
+        autocmd FileType c setlocal omnifunc=lsp#complete
+        autocmd FileType cpp setlocal omnifunc=lsp#complete
+        autocmd FileType objc setlocal omnifunc=lsp#complete
+        autocmd FileType objcpp setlocal omnifunc=lsp#complete
+    augroup end
+endif
+
+let mapleader = ","
+nnoremap <leader>i :LspHover<CR>
+nnoremap <leader>h :LspDefinition<CR>
+nnoremap <leader>p :LspPeekDefinition<CR>
+nnoremap <leader>r :LspReferences<CR>

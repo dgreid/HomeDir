@@ -13,3 +13,12 @@
 [submodule ".vim/pack/default/start/speeddating"]
 	path = .vim/pack/default/start/speeddating
 	url = https://tpope.io/vim/speeddating.git
+[submodule ".vim/pack/default/start/async"]
+	path = .vim/pack/default/start/async
+	url = https://github.com/prabirshrestha/async.vim
+[submodule ".vim/pack/default/start/vim-lsp"]
+	path = .vim/pack/default/start/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule ".vim/pack/default/start/asyncomplete"]
+	path = .vim/pack/default/start/asyncomplete
+	url = https://github.com/prabirshrestha/asyncomplete.vim
