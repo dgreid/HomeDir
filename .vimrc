@@ -36,7 +36,7 @@ set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd,*.o
 
 let g:rustfmt_autosave = 1
-let g:rustfmt_command = 'rustup run stable rustfmt'
+let g:rustfmt_command = "rustfmt --edition=2018"
 
 if executable('rls')
     au User lsp_setup call lsp#register_server({
