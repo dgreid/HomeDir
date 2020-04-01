@@ -22,3 +22,9 @@
 [submodule ".vim/pack/default/start/asyncomplete"]
 	path = .vim/pack/default/start/asyncomplete
 	url = https://github.com/prabirshrestha/asyncomplete.vim
+[submodule "vimwiki"]
+	path = vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
+[submodule ".vim/pack/default/start/vimwiki"]
+	path = .vim/pack/default/start/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
