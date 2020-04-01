@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 PWD=`pwd`
 for i in `find . -maxdepth 1 -name '*[a-zA-Z]*' | grep -v setup.sh | grep -v '.git' | grep -v '.ssh'`
 do
