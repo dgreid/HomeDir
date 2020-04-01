@@ -62,7 +62,7 @@ if executable('clangd')
     augroup end
 endif
 
-let g:vimwiki_list = [{ 'path': '/mnt/chromeos/GoogleDrive/MyDrive/org/', 'syntax':'markdown', 'ext': '.md' }]
+let g:vimwiki_list = [{ 'path': '~/notes', 'syntax':'markdown', 'ext': '.md' }]
 autocmd FileType vimwiki set ft=markdown
 
 let mapleader = ","
