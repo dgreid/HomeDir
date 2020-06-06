@@ -19,6 +19,10 @@ map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 " fuzzy find file
 nnoremap ,E :e **/*
 
+" persistent undo
+set undofile
+set undodir=~/.vim/undofiles
+
 nmap <SPACE> :noh<CR>
 nnoremap Y y$
 imap jk <Esc>
