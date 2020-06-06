@@ -25,9 +25,12 @@
    chp = cherry-pick
    shst = show --stat
    rbc = rebase --continue
+   rbi = rebase --interactive
    rbs = rebase --skip
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
 [rerere]
 	enabled = 1
+[http]
+	cookiefile = /home/dgreid/.gitcookies
