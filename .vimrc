@@ -49,8 +49,8 @@ let g:rustfmt_command = "rustfmt --edition=2018"
 
 if executable('rls')
     au User lsp_setup call lsp#register_server({
-             \ 'name': 'rls',
-             \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+             \ 'name': 'rust-analyzer',
+             \ 'cmd': {server_info->['/home/dgreid/.local/bin/rust-analyzer']},
              \ 'whitelist': ['rust'],
              \ })
     autocmd FileType rust setlocal omnifunc=lsp#complete
