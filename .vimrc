@@ -1,3 +1,8 @@
+augroup my_colours
+	autocmd!
+	autocmd ColorScheme aldmeris hi clear SpellBad
+	autocmd ColorScheme aldmeris hi SpellBad cterm=underline ctermfg=red
+augroup END
 colorscheme aldmeris
 version 8.0
 
