@@ -35,9 +35,18 @@ set reverse_name = yes
 
 set editor='vim -c "set spell textwidth=72 wrap linebreak"'
 
-# 'A' archives teh current open message or taged messages in the index
-macro pager A ":set confirmappend=no delete=yes\n<save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
-macro index A ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
+macro pager .a ":set confirmappend=no delete=yes\n<save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive current message"
+macro index .a ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive selected message(s)"
+macro pager .i ":set confirmappend=no delete=yes\n<save-message>=INBOX\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to 'Keep'"
+macro index .i ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=INBOX\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to 'Keep'"
+macro pager .k ":set confirmappend=no delete=yes\n<save-message>=Keep\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to 'Keep'"
+macro index .k ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=Keep\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to 'Keep'"
+# No shortcut to move to 'Lists' because that is handled by server-side filtering.
+
+macro index ,a "<change-folder>=archive<enter>" "Jump to archive"
+macro index ,i "<change-folder>=INBOX<enter>" "Jump to Inbox"
+macro index ,k "<change-folder>=Keep<enter>" "Jump to Keep"
+macro index ,l "<change-folder>=Lists<enter>" "Jump to Lists"
 
 # general
 color normal     color188 color237
