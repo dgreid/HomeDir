@@ -1,36 +1,43 @@
 set ascii_chars=yes
 set ssl_starttls=yes
 set ssl_force_tls=yes
-set imap_user = 'dgreid@google.com'
-set imap_pass = 'password'
-set from='dgreid@google.com'
+set imap_user = 'dgreid@dylanreid.com'
+set imap_pass = ''
+set from='dgreid@dylanreid.com'
 set realname='Dylan Reid'
 set use_from=yes
 set envelope_from=yes
-set folder = "imaps://imap.gmail.com:993/"
+set folder = "imaps://imappro.zoho.com:993/"
 set spoolfile = "+INBOX"
-set postponed="+[Gmail]/Drafts"
-#set header_cache = "~/.mutt/cache/headers"
+set postponed="+Drafts"
+set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 set certificate_file = "~/.mutt/certificates"
-set smtp_url = 'smtps://dgreid@google.com@smtp.gmail.com:465/'
-set smtp_pass = 'password'
 set move = no
 set imap_keepalive = 900
 set sort=threads
 set sort_aux=last-date-received
 set sort_re
 unset collapse_unread
-set mail_check = 10
+set mail_check = 60
 set timeout = 15
 set pager_index_lines = 15
 
-# Some mail goes to chromium.org, add that alias
-alternates ^dgreid@chromium.org$
+set realname = "Dylan Reid"
+set from = "dgreid@dylanreid.com"
+set hostname = "dylanreid.com"
+set smtp_url = 'smtp://dgreid@dylanreid.com@smtppro.zoho.com:587/'
+set smtp_pass = ''
+set smtp_authenticators = "login"
+
 #reverse_name makes reply from: address match to: address
 set reverse_name = yes
 
 set editor='vim -c "set spell textwidth=72 wrap linebreak"'
+
+# 'A' archives teh current open message or taged messages in the index
+macro pager A ":set confirmappend=no delete=yes\n<save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
+macro index A ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
 
 # general
 color normal     color188 color237
