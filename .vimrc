@@ -10,6 +10,8 @@ set backspace=indent,eol,start
 filetype on
 filetype plugin on
 filetype indent on
+" write buffers when switching away from them.
+set autowrite
 set history=1000
 set laststatus=2
 set nobackup
@@ -80,6 +82,34 @@ nnoremap <leader>h :LspDefinition<CR>
 nnoremap <leader>p :LspPeekDefinition<CR>
 nnoremap <leader>r :LspReferences<CR>
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+" Get the git branch name for the current buffer.
+function! GitBranch()
+	return system(printf("git -C %s rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'", expand('%:p:h:S')))
+endfunction
+
+" Caches the git branch name when loading/reading a buffer so git doesn't get
+" called for each update.
+augroup gitbranch
+	au!
+	autocmd BufEnter,FocusGained,BufWritePost * let b:git_branchname = GitBranch()
+augroup end
+
+" Returns the cached (in b:git_branchname) git branchname if it is set.
+function! BranchOrNone()
+	return get(b:, "git_branchname", "")
+endfunction
+
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{BranchOrNone()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m%r
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\
