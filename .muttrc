@@ -1,15 +1,20 @@
 set ascii_chars=yes
-set ssl_starttls=yes
-set ssl_force_tls=yes
-set imap_user = 'dgreid@dylanreid.com'
-set imap_pass = ''
+#mbsync set ssl_starttls=yes
+#mbsync set ssl_force_tls=yes
+#mbsync set imap_user = 'dgreid@dylanreid.com'
+#mbsync set imap_pass = `gpg2 -q --for-your-eyes-only --no-tty -d ~/.zohomailpass.gpg`
 set from='dgreid@dylanreid.com'
 set realname='Dylan Reid'
 set use_from=yes
 set envelope_from=yes
-set folder = "imaps://imappro.zoho.com:993/"
-set spoolfile = "+INBOX"
-set postponed="+Drafts"
+
+#mbsync set folder = "imaps://imappro.zoho.com:993/"
+#mbsync set spoolfile = "+INBOX"
+#mbsync set postponed="+Drafts"
+set folder = "~/.mail/dgreid"
+set spoolfile = "~/.mail/dgreid/Inbox"
+set postponed = "~/.mail/dgreid/Drafts"
+
 set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 set certificate_file = "~/.mutt/certificates"
@@ -27,7 +32,7 @@ set realname = "Dylan Reid"
 set from = "dgreid@dylanreid.com"
 set hostname = "dylanreid.com"
 set smtp_url = 'smtp://dgreid@dylanreid.com@smtppro.zoho.com:587/'
-set smtp_pass = ''
+set smtp_pass = `gpg2 -q --for-your-eyes-only --no-tty -d ~/.zohomailpass.gpg`
 set smtp_authenticators = "login"
 
 #reverse_name makes reply from: address match to: address
@@ -35,18 +40,23 @@ set reverse_name = yes
 
 set editor='vim -c "set spell textwidth=72 wrap linebreak"'
 
-macro pager .a ":set confirmappend=no delete=yes\n<save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive current message"
-macro index .a ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive selected message(s)"
-macro pager .i ":set confirmappend=no delete=yes\n<save-message>=INBOX\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to 'Keep'"
-macro index .i ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=INBOX\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to 'Keep'"
+macro index G "!mbsync -a<enter>" "Update through mbsync"
+
+# macro pager .a ":set confirmappend=no delete=yes\n<save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive current message"
+# macro index .a ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive selected message(s)"
+macro pager .i ":set confirmappend=no delete=yes\n<save-message>=Inbox\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to 'Keep'"
+macro index .i ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=Inbox\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to 'Keep'"
 macro pager .k ":set confirmappend=no delete=yes\n<save-message>=Keep\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to 'Keep'"
 macro index .k ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=Keep\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to 'Keep'"
+macro pager .v ":set confirmappend=no delete=yes\n<save-message>=saved\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to saved"
+macro index .v ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=saved\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to saved"
 # No shortcut to move to 'Lists' because that is handled by server-side filtering.
 
 macro index ,a "<change-folder>=archive<enter>" "Jump to archive"
-macro index ,i "<change-folder>=INBOX<enter>" "Jump to Inbox"
+macro index ,i "<change-folder>=Inbox<enter>" "Jump to Inbox"
 macro index ,k "<change-folder>=Keep<enter>" "Jump to Keep"
 macro index ,l "<change-folder>=Lists<enter>" "Jump to Lists"
+macro index ,v "<change-folder>=saved<enter>" "Jump to saved"
 
 # general
 color normal     color188 color237

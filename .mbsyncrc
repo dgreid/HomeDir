@@ -1,0 +1,28 @@
+# Address to connect to
+IMAPAccount dgreid
+Host imappro.zoho.com
+Port 993
+User dgreid@dylanreid.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.zohomailpass.gpg"
+SSLType IMAPS
+#SSLType starttls
+#SSLVersions TLSv1.2
+#SystemCertificates no
+#CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore dgreid-remote
+Account dgreid
+
+MaildirStore dgreid-local
+# The trailing "/" is important
+Path ~/.mail/dgreid/
+Inbox ~/.mail/dgreid/Inbox
+
+Channel dgreid
+Master :dgreid-remote:
+Slave :dgreid-local:
+Patterns *
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Save the synchronization state files in the relevant directory
+SyncState *
