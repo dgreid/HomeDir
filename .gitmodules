@@ -34,3 +34,6 @@
 [submodule ".vim/pack/default/opt/vim-markdown"]
 	path = .vim/pack/default/opt/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule ".vim/pack/default/start/unimpaired"]
+	path = .vim/pack/default/start/unimpaired
+	url = https://github.com/tpope/vim-unimpaired
