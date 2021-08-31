@@ -66,6 +66,7 @@ if executable('clangd')
                     \ 'cmd': {server_info->['clangd']},
                     \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
                     \ })
+        autocmd FileType asm setlocal omnifunc=lsp#complete
         autocmd FileType c setlocal omnifunc=lsp#complete
         autocmd FileType cpp setlocal omnifunc=lsp#complete
         autocmd FileType objc setlocal omnifunc=lsp#complete
