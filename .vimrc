@@ -74,14 +74,36 @@ if executable('clangd')
     augroup end
 endif
 
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gld <plug>(lsp-definition)
+    nmap <buffer> gls <plug>(lsp-document-symbol-search)
+    nmap <buffer> glS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> glr <plug>(lsp-references)
+    nmap <buffer> gli <plug>(lsp-implementation)
+    nmap <buffer> glt <plug>(lsp-type-definition)
+    nmap <buffer> gln <plug>(lsp-rename)
+    nmap <buffer> glh <plug>(lsp-hover)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
 let g:vimwiki_list = [{ 'path': '~/notes', 'syntax':'markdown', 'ext': '.md' }]
 autocmd FileType vimwiki set ft=markdown
-
-let mapleader = ","
-nnoremap <leader>i :LspHover<CR>
-nnoremap <leader>h :LspDefinition<CR>
-nnoremap <leader>p :LspPeekDefinition<CR>
-nnoremap <leader>r :LspReferences<CR>
 
 " Get the git branch name for the current buffer.
 function! GitBranch()
