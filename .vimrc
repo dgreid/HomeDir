@@ -49,13 +49,13 @@ set wildignore+=*.pdf,*.psd,*.o
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = "rustfmt --edition=2018"
 
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-             \ 'name': 'rust-analyzer',
-             \ 'cmd': {server_info->['/home/dgreid/.local/bin/rust-analyzer']},
-             \ 'whitelist': ['rust'],
-             \ })
-    autocmd FileType rust setlocal omnifunc=lsp#complete
+
+if executable('rust-analyzer')
+  au User lsp_setup call lsp#register_server({
+        \   'name': 'Rust Analyzer',
+        \   'cmd': {server_info->['rust-analyzer']},
+        \   'whitelist': ['rust'],
+        \ })
 endif
 
 if executable('clangd')
