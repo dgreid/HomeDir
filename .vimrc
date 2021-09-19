@@ -1,9 +1,3 @@
-augroup my_colours
-	autocmd!
-	autocmd ColorScheme aldmeris hi clear SpellBad
-	autocmd ColorScheme aldmeris hi SpellBad cterm=underline ctermfg=red
-augroup END
-colorscheme aldmeris
 version 8.0
 
 set backspace=indent,eol,start
@@ -20,6 +14,11 @@ set ruler
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 syntax on
 set termencoding=utf-8
+
+set background=dark
+let g:gruvbox_italic=0
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
 
 " open in current dir of file
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -79,14 +78,14 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gld <plug>(lsp-definition)
-    nmap <buffer> gls <plug>(lsp-document-symbol-search)
-    nmap <buffer> glS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> glr <plug>(lsp-references)
-    nmap <buffer> gli <plug>(lsp-implementation)
-    nmap <buffer> glt <plug>(lsp-type-definition)
-    nmap <buffer> gln <plug>(lsp-rename)
-    nmap <buffer> glh <plug>(lsp-hover)
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gy <plug>(lsp-type-definition)
+    nmap <buffer> gn <plug>(lsp-rename)
+    nmap <buffer> gh <plug>(lsp-hover)
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     inoremap <buffer> <expr><c-f> lsp#scroll(+4)

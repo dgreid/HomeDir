@@ -40,3 +40,6 @@
 [submodule ".vim/pack/default/start/vim-toml"]
 	path = .vim/pack/default/start/vim-toml
 	url = https://github.com/cespare/vim-toml.git
+[submodule ".vim/pack/debfault/start/gruvbox"]
+	path = .vim/pack/debfault/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
