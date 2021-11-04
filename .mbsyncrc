@@ -5,6 +5,7 @@ Port 993
 User dgreid@dylanreid.com
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.zohomailpass.gpg"
 SSLType IMAPS
+Timeout 60
 #SSLType starttls
 #SSLVersions TLSv1.2
 #SystemCertificates no
@@ -23,6 +24,48 @@ Master :dgreid-remote:
 Slave :dgreid-local:
 Patterns *
 # Automatically create missing mailboxes, both locally and on the server
-Create Both
+Create Slave
 # Save the synchronization state files in the relevant directory
 SyncState *
+
+IMAPAccount rivos
+Host imap.gmail.com
+User dylan@rivosinc.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.rivosmailpass.gpg"
+SSLType IMAPS
+AuthMechs LOGIN
+#SSLType starttls
+#SSLVersions TLSv1.2
+#CertificateFile /etc/ssl/certs/ca-certificates.crt
+#Pipelinedepth 1
+
+IMAPStore rivos-remote
+Account rivos
+
+MaildirStore rivos-local
+Path ~/.mail/rivos/
+Inbox ~/.mail/rivos/Inbox
+#SubFolders Verbatim
+
+Channel rivos-inbox
+Master :rivos-remote:
+Slave :rivos-local:inbox
+#Patterns "INBOX"
+
+Channel rivos-lists
+Master :rivos-remote:"lists"
+Slave :rivos-local:lists
+
+Channel rivos-sent
+Master :rivos-remote:"[Gmail]/Sent Mail"
+Slave :rivos-local:sent
+
+Channel rivos-trash
+Master :rivos-remote:"[Gmail]/Trash"
+Slave :rivos-local:trash
+
+Group rivos
+Channel rivos-inbox
+Channel rivos-lists
+Channel rivos-sent
+Channel rivos-trash

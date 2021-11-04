@@ -1,0 +1,9 @@
+set from='dylan@rivosinc.com'
+set hostname = "rivosinc.com"
+set smtp_url = 'smtp://dylan@rivosinc.com@smtp.gmail.com'
+set smtp_pass = `gpg2 -q --for-your-eyes-only --no-tty -d ~/.rivosmailpass.gpg`
+set smtp_authenticators = "login"
+
+set folder = "~/.mail/rivos"
+set spoolfile = "~/.mail/rivos/inbox"
+set postponed = "~/.mail/rivos/Drafts"
