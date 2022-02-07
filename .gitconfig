@@ -1,5 +1,5 @@
 [user]
-	email = dgreid@chromium.org
+	email = dgreid@rivosinc.com
 	name = Dylan Reid
 [color]
 	status = auto
@@ -33,4 +33,4 @@
 [rerere]
 	enabled = 1
 [http]
-	cookiefile = /home/dgreid/.gitcookies
+	cookiefile = /home/dylan/.gitcookies

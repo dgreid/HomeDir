@@ -15,6 +15,11 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 syntax on
 set termencoding=utf-8
 
+" doesn't work with mosh or tmux:(
+"if (has("termguicolors"))
+"	set termguicolors
+"endif
+
 set background=dark
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
@@ -36,6 +41,11 @@ set smartindent
 set smarttab
 syntax on
 let c_space_errors = 1
+
+" Map unimpaired-like shortcuts for float term
+inoremap yof :FloatermToggle<CR>
+nnoremap yof :FloatermToggle<CR>
+tnoremap yof :FloatermToggle<CR>
 
 set vb t_vb=     " no visual bell
 
@@ -135,3 +145,6 @@ set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 set statusline+=\
+
+" abbreviations
+iabbrev rvccc // Copyright (c) 2022 by Rivos Inc.<CR>Licensed under the Apache License, Version 2.0, see LICENSE for details.<CR>SPDX-License-Identifier: Apache-2.0<CR><esc>0Di

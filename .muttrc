@@ -4,6 +4,12 @@ set realname='Dylan Reid'
 set use_from=yes
 set envelope_from=yes
 
+set fast_reply=yes
+set include=yes
+
+set pager_context=3
+set pager_stop=yes
+
 #reverse_name makes reply from: address match to: address
 set reverse_name = yes
 
@@ -32,11 +38,12 @@ macro index ,r '<sync-mailbox><refresh><enter-command>source ~/.mutt.rivos<enter
 
 # macro pager .a ":set confirmappend=no delete=yes\n<save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive current message"
 # macro index .a ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive selected message(s)"
-macro pager .i ":set confirmappend=no delete=yes\n<save-message>=Inbox\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to 'Keep'"
-macro index .i ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=Inbox\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to 'Keep'"
+macro pager .i ":set confirmappend=no delete=yes\n<save-message>=Inbox\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to 'Inbox'"
+macro index .i ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=Inbox\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to 'Inbox'"
 macro pager .k ":set confirmappend=no delete=yes\n<save-message>=Keep\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to 'Keep'"
 macro index .k ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=Keep\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to 'Keep'"
-macro pager .v ":set confirmappend=no delete=yes\n<save-message>=saved\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to saved"
+#macro pager .v ":set confirmappend=no delete=yes\n<save-message>=saved\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move current message to saved"
+macro pager .v ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=saved\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to saved"
 macro index .v ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=saved\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Move selected message(s) to saved"
 # No shortcut to move to 'Lists' because that is handled by server-side filtering.
 
@@ -44,6 +51,7 @@ macro index ,i "<change-folder>=Inbox<enter>" "Jump to Inbox"
 macro index ,k "<change-folder>=Keep<enter>" "Jump to Keep"
 macro index ,l "<change-folder>=Lists<enter>" "Jump to Lists"
 macro index ,v "<change-folder>=saved<enter>" "Jump to saved"
+macro index ,s "<change-folder>=sent<enter>" "Jump to send"
 
 # general
 color normal     color188 color237

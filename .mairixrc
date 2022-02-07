@@ -1,0 +1,4 @@
+base=~/.mail
+maildir=*...
+mfolder=/home/dylan/.mairix_results
+omit=Spam
