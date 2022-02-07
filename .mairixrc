@@ -1,4 +1,5 @@
 base=~/.mail
 maildir=*...
 mfolder=/home/dylan/.mairix_results
+database=/home/dylan/.mairix_db
 omit=Spam

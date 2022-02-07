@@ -32,9 +32,13 @@ macro index G "!mbsync -a<enter>" "Update through mbsync"
 
 source "~/.mutt.dgreid"
 
-# Switch accounts with F keys
+# Switch accounts
 macro index ,d '<sync-mailbox><refresh><enter-command>source ~/.mutt.dgreid<enter><change-folder>!<enter>'
 macro index ,r '<sync-mailbox><refresh><enter-command>source ~/.mutt.rivos<enter><change-folder>!<enter>'
+macro index ,m '<sync-mailbox><refresh><enter-command>source ~/.mutt.mairix<enter><change-folder>!<enter>'
+
+# run search
+macro index "M"    "<shell-escape>~/scripts/mairix_search.sh " "Run a Mairix search"
 
 # macro pager .a ":set confirmappend=no delete=yes\n<save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive current message"
 # macro index .a ":set confirmappend=no delete=yes\n<tag-prefix-cond><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n" "Archive selected message(s)"
