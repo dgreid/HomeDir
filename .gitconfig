@@ -27,6 +27,7 @@
    rbc = rebase --continue
    rbi = rebase --interactive
    rbs = rebase --skip
+   rank = !git shortlog -sn --no-merges
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
