@@ -35,3 +35,10 @@
 	enabled = 1
 [http]
 	cookiefile = /home/dylan/.gitcookies
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpuser = dylan@rivosinc.com
+	smtpencryption = tls
+	smtpserverport = 587
+[credential "smtp://dylan%40rivosinc.com@smtp.gmail.com%3a587"]
+	helper = !pass git-send-email/rivos
