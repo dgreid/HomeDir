@@ -114,6 +114,10 @@ augroup END
 let g:vimwiki_list = [{ 'path': '~/notes', 'syntax':'markdown', 'ext': '.md' }]
 autocmd FileType vimwiki set ft=markdown
 
+" remove trailing whitespace from markdown files
+autocmd FileType markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+
+
 " Get the git branch name for the current buffer.
 function! GitBranch()
 	return system(printf("git -C %s rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'", expand('%:p:h:S')))
