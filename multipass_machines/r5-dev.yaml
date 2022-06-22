@@ -1,0 +1,58 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+# Install additional packages on first boot
+#
+# Default: none
+#
+# if packages are specified, this package_update will be set to true
+#
+# packages may be supplied as a single package name or as a list
+# with the format [<package>, <version>] wherein the specific
+# package version will be installed.
+packages:
+  - autoconf
+  - automake
+  - bc
+  - binutils-common
+  - bison
+  - build-essential
+  - bzip2
+  - clang
+  - clangd
+  - curl
+  - device-tree-compiler
+  - flex
+  - gdb
+  - git
+  - git-email
+  - git-man
+  - gnupg
+  - libcap-ng-dev
+  - libdbus-1-dev
+  - libfdt-dev
+  - libffi-dev
+  - libprotobuf-c-dev
+  - libprotobuf-dev
+  - lynx
+  - neomutt
+  - net-tools
+  - ninja-build
+  - openssh-client
+  - openssh-server
+  - pass
+  - protobuf-compiler
+  - python3
+  - tig
+  - tmux
+
+users:
+  - name: dgreid
+    gecos: Dylan Reid
+    groups: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBMu/0O6PtVg+8SAynHa2h4GG/XwOpX9ZASIjZIsS+Gg dylanreid@dylans-MacBook-Pro.local
+    plain_text_passwd: 'test0000'
