@@ -41,6 +41,7 @@ packages:
   - ninja-build
   - openssh-client
   - openssh-server
+  - openvpn
   - pass
   - protobuf-compiler
   - python3
