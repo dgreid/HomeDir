@@ -24,6 +24,7 @@ packages:
   - curl
   - device-tree-compiler
   - flex
+  - gcc-riscv64-unknown-elf
   - gdb
   - git
   - git-email
