@@ -17,10 +17,43 @@ users:
 
 packages:
   - ansible
+  - autoconf
+  - automake
+  - bc
+  - binutils-common
+  - bison
+  - build-essential
+  - bzip2
+  - clang
+  - clangd
+  - curl
+  - device-tree-compiler
+  - flex
+  - gdb
   - git
+  - git-email
+  - git-man
+  - gnupg
+  - libcap-ng-dev
+  - libdbus-1-dev
+  - libfdt-dev
+  - libffi-dev
+  - libprotobuf-c-dev
+  - libprotobuf-dev
+  - lynx
+  - neomutt
+  - net-tools
+  - ninja-build
+  - openssh-client
+  - openssh-server
+  - openvpn
+  - pass
+  - protobuf-compiler
+  - python3
+  - tig
+  - tmux
 
 ansible:
   pull:
-    url: "https://github.com/dgreid/HomeDir.git"
-    checkout: macos
-    playbook-name: ansible/default/local.yml
+    url: "https://github.com/dgreid/ansible-crostini.git"
+    playbook-name: local.yml
