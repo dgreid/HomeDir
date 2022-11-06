@@ -1,0 +1,23 @@
+- git:
+    repo: 'https://github.com/dgreid/HomeDir'
+    remote: github
+    dest: /home/dgreid/HomeDir
+
+- git:
+    repo: 'https://github.com/dgreid/adhd'
+    remote: github
+    dest: /home/dgreid/adhd
+
+- git:
+    repo: 'https://github.com/dgreid/crosvm'
+    remote: github
+    dest: /home/dgreid/crosvm
+
+- git:
+    repo: 'https://github.com/dgreid/HomeDir'
+    remote: github
+    dest: /home/dgreid/HomeDir
+
+- git:
+    repo: 'https://android.googlesource.com/platform/external/minijail'
+    dest: /home/dgreid/minijail

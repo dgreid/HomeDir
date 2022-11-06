@@ -1,0 +1,26 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+users:
+  - name: dgreid
+    gecos: Dylan Reid
+    groups: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBMu/0O6PtVg+8SAynHa2h4GG/XwOpX9ZASIjZIsS+Gg dylanreid@dylans-MacBook-Pro.local
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFdDfad42zuPcvV6Irk21LIoS8KohF2XTYTRP0QQIRku dgreid@Dylans-MacBook-Air.local
+    plain_text_passwd: 'test0000'
+
+
+packages:
+  - ansible
+  - git
+
+ansible:
+  pull:
+    url: "https://github.com/dgreid/HomeDir.git"
+    checkout: macos
+    playbook-name: ansible/default/local.yml
