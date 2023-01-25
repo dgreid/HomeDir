@@ -12,7 +12,7 @@ set ruler
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 syntax on
 
-colorscheme zenburn
+colorscheme gruvbox
 
 " open in current dir of file
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -21,7 +21,7 @@ nnoremap ,E :e **/*
 
 " persistent undo
 set undofile
-set undodir=~/.vim/undofiles
+set undodir=~/.nvim_undofiles
 
 nmap <SPACE> :noh<CR>
 nnoremap Y y$
