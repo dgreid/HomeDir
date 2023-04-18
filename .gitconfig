@@ -18,6 +18,7 @@
    ci = commit
    co = checkout
    st = status
+   subup = submodule update --init --recursive
    br = branch
    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
    lgt = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative HEAD~25..
@@ -27,6 +28,7 @@
    shst = show --stat
    rbc = rebase --continue
    rbi = rebase --interactive
+   rbim = rebase --interactive master
    rbs = rebase --skip
    rank = !git shortlog -sn --no-merges
 [merge]
@@ -35,7 +37,7 @@
 [rerere]
 	enabled = 1
 [http]
-	cookiefile = /home/dylan/.gitcookies
+	cookiefile = /home/dgreid/.gitcookies
 [sendemail]
 	smtpserver = smtp.gmail.com
 	smtpuser = dylan@rivosinc.com
