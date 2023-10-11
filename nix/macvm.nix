@@ -47,11 +47,42 @@
 
   # CLI tools, language runtimes, shells, and other desired packages
   environment.systemPackages = with pkgs; [
+    autoconf
+    automake
+    bc
+    binutils
+    bison
+    bzip2
+    clang
+    clang-tools
     curl
-    wget
+    device-tree
+    flex
+    gcc-riscv64-unknown-elf
+    gdb
     git
-    openssl
+    git-email
+    git-man
+    gnupg
+    libcap-ng-dev
+    libdbus-1-dev
+    libfdt-dev
+    libffi-dev
+    libprotobuf-c-dev
+    libprotobuf-dev
+    lynx
+    neomutt
     neovim
+    net-tools
+    ninja-build
+    openssh-client
+    openssh-server
+    openvpn
+    pass
+    protobuf-compiler
+    python3
+    tig
     tmux
+    wget
   ];
 }

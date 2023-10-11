@@ -3,7 +3,7 @@ bind index,pager .. mailbox-list
 
 source ~/.muttrc
 
-mailboxes ~/.mail/dgreid/Inbox ~/.mail/dgreid/Lists ~/.mail/rivos/inbox ~/.mail/rivos/lists
+mailboxes ~/.mail/dgreid/Inbox ~/.mail/dgreid/Lists ~/.mail/dgreid/Keep ~/.mail/rivos/inbox ~/.mail/rivos/lists
 
 # --------------------------------------------------------------------------
 # VARIABLES – shown with their default values
@@ -33,8 +33,8 @@ set sidebar_new_mail_only = no
 # sidebar_new_mail_only option is enabled.
 set sidebar_non_empty_mailbox_only = no
 # Only show mailboxes that contain some mail
-sidebar_whitelist '/home/dylan/.mail/rivos'
-sidebar_whitelist '/home/dylan/.mail/dgreid'
+sidebar_whitelist '/Users/dylanreid/.mail/rivos'
+sidebar_whitelist '/Users/dylanreid/.mail/dgreid'
 # When searching for mailboxes containing new mail, should the search wrap
 # around when it reaches the end of the list?
 set sidebar_next_new_wrap = no
@@ -63,7 +63,7 @@ bind index,pager \Cp sidebar-prev
 # Move the highlight to the next mailbox
 bind index,pager \Cn sidebar-next
 # Open the highlighted mailbox
-bind index,pager \Co sidebar-open
+bind index,pager \Ck sidebar-open
 # Move the highlight to the previous page
 # This is useful if you have a LOT of mailboxes.
 bind index,pager <F3> sidebar-page-up
