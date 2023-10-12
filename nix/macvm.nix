@@ -1,6 +1,6 @@
 { pkgs, modulesPath, lib, ... }: {
   imports = [
-    "${modulesPath}/installer/cd-dvd/iso-image.nix"
+    "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
   ];
 
   # use the latest Linux kernel
@@ -56,32 +56,29 @@
     clang
     clang-tools
     curl
-    device-tree
+    #device-tree
     flex
-    gcc-riscv64-unknown-elf
+    #gcc-riscv64-unknown-elf
     gdb
-    git
-    git-email
-    git-man
+    gitFull
+    gnumake
     gnupg
-    libcap-ng-dev
-    libdbus-1-dev
-    libfdt-dev
-    libffi-dev
-    libprotobuf-c-dev
-    libprotobuf-dev
+    #libcap-ng-dev
+    #libdbus-1-dev
+    #libfdt-dev
+    #libffi-dev
+    #libprotobuf-c-dev
+    #libprotobuf-dev
     lynx
     neomutt
     neovim
-    net-tools
-    ninja-build
-    openssh-client
-    openssh-server
+    #net-tools
+    #ninja-build
+    openssh
     openvpn
     pass
-    protobuf-compiler
+    #protobuf-compiler
     python3
-    tig
     tmux
     wget
   ];
