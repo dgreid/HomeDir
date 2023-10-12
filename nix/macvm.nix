@@ -1,6 +1,6 @@
 { pkgs, modulesPath, lib, ... }: {
   imports = [
-    "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+    "${modulesPath}/profiles/qemu-guest.nix"
   ];
 
   # use the latest Linux kernel
@@ -9,13 +9,16 @@
   # Needed for https://github.com/NixOS/nixpkgs/issues/58959
   boot.supportedFilesystems = lib.mkForce [ "btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs" ];
 
-  boot.initrd.availableKernelModules = [ "virtio_net" "virtio_pci" "virtio_mmio" "virtio_blk" "virtio_scsi" "9p" "9pnet_virtio" ];
-  boot.initrd.kernelModules = [ "virtio_net" "virtio_console" "virtio_rng" "9p" "9pnet_virtio" ];
-
   networking.hostName = "mbpnix";
 
   # no need for grub menu
   boot.loader.timeout = lib.mkForce 0;
+
+  # mount home dir
+  fileSystems."/home/dgreid" = {
+    device = "/dev/vda";
+    fsType = "btrfs";
+  };
 
   # Start the ssh server
   services.openssh = {
