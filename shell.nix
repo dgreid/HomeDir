@@ -27,6 +27,8 @@
         openssh
         openvpn
         pass
+        perf-tools
+        pkgs.linuxPackages_latest.perf
         podman
         tmux
         wget
