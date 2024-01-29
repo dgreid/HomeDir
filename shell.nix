@@ -11,8 +11,8 @@
         clang
         clang-tools
 	crosvm
-	crosvm.buildInputs
-	crosvm.nativeBuildInputs
+#	crosvm.buildInputs
+#	crosvm.nativeBuildInputs
         curl
         flex
         gdb
