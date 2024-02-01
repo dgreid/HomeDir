@@ -134,4 +134,4 @@ set statusline+=\ %l:%c
 set statusline+=\
 
 " abbreviations
-iabbrev rvccc // Copyright (c) 2022 by Rivos Inc.<CR>Licensed under the Apache License, Version 2.0, see LICENSE for details.<CR>SPDX-License-Identifier: Apache-2.0<CR><esc>0Di
+iabbrev rvccc // Copyright (c) 2023 by Rivos Inc.<CR>Licensed under the Apache License, Version 2.0, see LICENSE for details.<CR>SPDX-License-Identifier: Apache-2.0<CR><esc>0Di
