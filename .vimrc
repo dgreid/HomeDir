@@ -62,7 +62,7 @@ let g:rustfmt_command = "rustfmt --edition=2018"
 if executable('rust-analyzer')
   au User lsp_setup call lsp#register_server({
         \   'name': 'Rust Analyzer',
-        \   'cmd': {server_info->['rust-analyzer']},
+        \   'cmd': {server_info->['rustup run stable rust-analyzer']},
         \   'whitelist': ['rust'],
         \ })
 endif
