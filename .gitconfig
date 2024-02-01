@@ -31,6 +31,7 @@
    rbim = rebase --interactive master
    rbs = rebase --skip
    rank = !git shortlog -sn --no-merges
+   rvfetch = fetch origin rivos/main:master
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
