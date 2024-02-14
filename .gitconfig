@@ -20,6 +20,7 @@
    st = status
    subup = submodule update --init --recursive
    br = branch
+   br-recent = branch -a --sort=-committerdate
    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
    lgt = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative HEAD~25..
    rs = remote show
