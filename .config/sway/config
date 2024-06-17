@@ -47,6 +47,7 @@ exec swayidle -w \
 ### Input configuration
 input * {
   natural_scroll enabled
+  xkb_options caps:escape
 }
 
 #
