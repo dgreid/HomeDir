@@ -19,6 +19,8 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_path | wmenu | xargs swaymsg exec --
+# browser
+set $web brave
 
 ### Output configuration
 #
@@ -78,7 +80,10 @@ input * {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
+
+    # Start browser
+    bindsym $mod+Shift+w exec $web
 #
 # Moving around:
 #
@@ -202,6 +207,11 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# volume keys
+bindsym XF86AudioRaiseVolume exec pamixer -i 5
+bindsym XF86AudioLowerVolume exec pamixer -d 5
+bindsym XF86AudioMute exec pamixer --toggle-mute
 
 #
 # Status Bar:
