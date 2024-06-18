@@ -30,6 +30,7 @@
         perf-tools
         pkgs.linuxPackages_latest.perf
         podman
+	rustup
         tmux
         wget
 
