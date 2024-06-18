@@ -111,6 +111,8 @@ input * {
 #
 # Workspaces:
 #
+    # Switch to last active workspace
+    bindsym $mod+Tab workspace back_and_forth
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
