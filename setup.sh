@@ -11,8 +11,8 @@ mkdir -p ~/.ssh
 ln -s $PWD/.ssh/config ~/.ssh/config
 mkdir -p ~/.local/bin
 mkdir -p ~/.config
-ln -s ~/.config/nvim ~/.config/nvim
-ln -s ~/.config/sway ~/.config/sway
+ln -s ~/HomeDir/.config/nvim ~/.config/nvim
+ln -s ~/HomeDir/.config/sway ~/.config/sway
 mkdir -p ~/.local/share
 ln -s ~/HomeDir/.local/share/i3status-rust ~/.local/share/
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.local/bin/rust-analyzer
