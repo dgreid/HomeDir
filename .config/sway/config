@@ -84,6 +84,10 @@ input * {
 
     # Start browser
     bindsym $mod+Shift+w exec $web
+
+    # screen brightness
+    bindsym $mod+z exec brightnessctl set 5%+
+    bindsym $mod+Shift+z exec brightnessctl set 5%-
 #
 # Moving around:
 #
