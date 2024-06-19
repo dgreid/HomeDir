@@ -20,7 +20,8 @@ set $term alacritty
 # on the original workspace that the command was run on.
 set $menu dmenu_path | wmenu | xargs swaymsg exec --
 # browser
-set $web brave
+set $web brave --ozone-platform=wayland
+set $chrome google-chrome-stable --ozone-platform=wayland
 
 ### Output configuration
 #
@@ -84,6 +85,7 @@ input * {
 
     # Start browser
     bindsym $mod+Shift+w exec $web
+    bindsym $mod+Shift+g exec $chrome
 
     # screen brightness
     bindsym $mod+z exec brightnessctl set 5%+
@@ -228,5 +230,8 @@ bar {
 
     status_command i3status-rs
 }
+
+output HDMI-A-1 pos 0 0 scale 2
+output eDP-1 pos 3840 960
 
 include /etc/sway/config.d/*
