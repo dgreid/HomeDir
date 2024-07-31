@@ -46,3 +46,6 @@
 [submodule ".config/nvim/pack/github/start/copilot.vim"]
 	path = .config/nvim/pack/github/start/copilot.vim
 	url = https://github.com/github/copilot.vim
+[submodule ".config/lazyvim"]
+	path = .config/lazyvim
+	url = https://github.com/dgreid/LazyVim
