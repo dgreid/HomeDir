@@ -51,3 +51,6 @@
 	helper = !pass git-send-email/rivos
 [advice]
 	detachedHead = false
+[maintenance]
+	repo = /scratch/rvsys
+	repo = /scratch/linux
