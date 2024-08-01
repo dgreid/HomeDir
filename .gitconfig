@@ -16,14 +16,15 @@
 [alias]
    ane = commit --amend --no-edit
    ci = commit
+   caane = commit -a --amend --no-edit
    co = checkout
    st = status
    subup = submodule update --init --recursive
-   br = branch
-   bra = branch -a --column
-   bra-recent = branch -a --sort=-committerdate --column
+   br = branch --sort=-committerdate
+   bra = branch -a --sort=-committerdate
    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
    lgt = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative HEAD~25..
+   lgT = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative HEAD~50..
    rs = remote show
    rsn = remote show -n
    chp = cherry-pick
