@@ -8,6 +8,7 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $alt Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -69,6 +70,9 @@ input * {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # lock screen
+    bindsym $mod+$alt+Shift+l exec swaylock -f -c 000000
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
