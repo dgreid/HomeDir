@@ -18,6 +18,7 @@
    ci = commit
    caane = commit -a --amend --no-edit
    co = checkout
+   ss = show --stat
    st = status
    subup = submodule update --init --recursive
    br = branch --sort=-committerdate
