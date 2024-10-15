@@ -1,3 +1,6 @@
 [font.normal]
 family = "FiraCode Nerd Font"
 style = "Regular"
+
+[window]
+option_as_alt = "Both"
