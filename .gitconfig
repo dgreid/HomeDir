@@ -52,3 +52,9 @@
 	helper = !pass git-send-email/rivos
 [advice]
 	detachedHead = false
+[diff]
+	submodule = log
+[push]
+	recurseSubmodules = check
+[submodule]
+	recurse = false
