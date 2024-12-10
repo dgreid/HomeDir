@@ -18,6 +18,7 @@
    ci = commit
    caane = commit -a --amend --no-edit
    co = checkout
+   dm = diff master
    ss = show --stat
    st = status
    subup = submodule update --init --recursive
@@ -29,7 +30,6 @@
    rs = remote show
    rsn = remote show -n
    chp = cherry-pick
-   shst = show --stat
    rbc = rebase --continue
    rbi = rebase --interactive
    rbim = rebase --interactive master
