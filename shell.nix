@@ -18,12 +18,14 @@ in
 #	crosvm.buildInputs
 #	crosvm.nativeBuildInputs
         curl
+	delta
         flex
         gdb
         gitFull
         gnumake
         gnupg
         lynx
+	meson
         ncurses
         neomutt
         latestPkgs.neovim
@@ -32,6 +34,7 @@ in
         openvpn
         pass
         perf-tools
+	pkg-config
         pkgs.linuxPackages_latest.perf
         podman
 	rustup
