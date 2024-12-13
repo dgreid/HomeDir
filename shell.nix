@@ -1,3 +1,7 @@
+let
+  latestNixpkgs = builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+  latestPkgs = import latestNixpkgs { };
+in
 { pkgs ? import <nixpkgs> {} }:
   pkgs.mkShell {
     # nativeBuildInputs is usually what you want -- tools you need to run
@@ -22,7 +26,7 @@
         lynx
         ncurses
         neomutt
-        neovim
+        latestPkgs.neovim
         nodejs
         openssh
         openvpn
