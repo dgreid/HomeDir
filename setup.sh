@@ -12,6 +12,7 @@ mkdir -p ~/.local/bin
 mkdir -p ~/.config
 ln -s ~/HomeDir/.config/lazyvim ~/.config/nvim
 ln -s ~/HomeDir/.config/sway ~/.config/sway
+ln -s ~/HomeDir/.config/ghostty ~/.config/ghostty
 mkdir -p ~/.local/share
 ln -s ~/HomeDir/.local/share/i3status-rust ~/.local/share/
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.local/bin/rust-analyzer
