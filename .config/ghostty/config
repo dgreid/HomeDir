@@ -1,3 +1,6 @@
 font-family = "FiraCode Nerd Font"
 font-size = 10.0
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 theme = argonaut
