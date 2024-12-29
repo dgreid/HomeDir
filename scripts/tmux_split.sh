@@ -9,6 +9,12 @@ if [ $width -lt 3 ]; then
     exit 1
 fi
 
+# if there are more than one panes, exit.
+if [ $(tmux list-panes | wc -l) -gt 1 ]; then
+    echo "There are already multiple panes."
+    exit 1
+fi
+
 # The default center width is 106 if width < 220, otherwise 212.
 if [ $width -lt 220 ]; then
     default_width=106
