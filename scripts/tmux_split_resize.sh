@@ -3,8 +3,6 @@
 # Get the current width of the terminal.
 width=$(tmux display-message -p '#{window_width}')
 
-echo $width
-
 # If the widths is less than 3, exit.
 if [ $width -lt 3 ]; then
     exit 0
