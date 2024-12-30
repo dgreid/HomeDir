@@ -9,9 +9,9 @@ export EDITOR=nvim
 
 #if rivos is in the hostname, export the work srcpath.
 if [[ $(hostname) == *rivosinc* ]]; then
-    export SRC_PATH=/scratch/
+    export SRC_PATH=/scratch
 else
-    export SRC_PATH=~/src/
+    export SRC_PATH=~/src
 fi
 
 # make up arrow search backward
