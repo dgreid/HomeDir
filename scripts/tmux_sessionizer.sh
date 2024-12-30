@@ -18,8 +18,13 @@ hydrate() {
         tmux send-keys -t $1 "source $2/.tmux-sessionizer" c-M
     elif [ -f $HOME/.tmux-sessionizer ]; then
         tmux send-keys -t $1 "source $HOME/.tmux-sessionizer" c-M
+    elif [ -f $HOME/.tmux-sessions/$selected_name ]; then
+        tmux send-keys -t $1 "source $HOME/.tmux-sessions/$selected_name" c-M
+    elif [ -f $HOME/.tmux-session-work/$selected_name ]; then
+        tmux send-keys -t $1 "source $HOME/.tmux-session-work/$selected_name" c-M
     else
         tmux send-keys -t $1 "source $HOME/scripts/tmux_split.sh" c-M
+        tmux rename-window -t $1 $selected_name
     fi
 }
 
