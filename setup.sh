@@ -18,3 +18,9 @@ mkdir -p ~/.local/share
 ln -s ~/HomeDir/.local/share/i3status-rust ~/.local/share/
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.local/bin/rust-analyzer
 chmod +x ~/.local/bin/rust-analyzer
+if [ -d ~/.tmux-sessions ]; then
+    ln -s ~/HomeDir/.tmux-sessions ~
+fi
+if [ -d ~/.tmux-sessions-work ]; then
+    ln -s ~/HomeDir/.tmux-sessions-work ~
+fi
