@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+WINDOW_BLACKLIST="rasd-fs-sim-run"
+
+# Exit if the window is in the blacklist.
+if echo $WINDOW_BLACKLIST | grep -q $(tmux display-message -p '#W'); then
+    exit 0
+fi
+
 # Get the current width of the terminal.
 width=$(tmux display-message -p '#{window_width}')
 
