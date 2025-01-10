@@ -20,6 +20,7 @@ in
         curl
 	delta
         flex
+        fzf
         gdb
         gitFull
         gnumake
