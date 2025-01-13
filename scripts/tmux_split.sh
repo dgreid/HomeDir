@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# if the first argument is given, set CDDIR to '-c argument'
+if [ -n "$1" ]; then
+    CDDIR="-c $1"
+else
+    CDDIR=""
+fi
+
 # Get the current width of the terminal.
 width=$(tmux display-message -p '#{window_width}')
 
@@ -16,7 +23,7 @@ if [ $(tmux list-panes | wc -l) -gt 1 ]; then
 fi
 
 # Split the current pane into three panes.
-tmux split-window -h
-tmux split-window -h
+tmux split-window -h $CDDIR
+tmux split-window -h $CDDIR
 ~/scripts/tmux_split_resize.sh
 tmux select-pane -t 1
