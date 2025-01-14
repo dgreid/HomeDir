@@ -23,7 +23,7 @@ hydrate() {
     elif [ -f $HOME/.tmux-sessions-work/$selected_name ]; then
         tmux send-keys -t $1 "source $HOME/.tmux-sessions-work/$selected_name" c-M
     else
-        tmux send-keys -t $1 "source $HOME/scripts/tmux_split.sh" c-M
+        $HOME/scripts/tmux_split.sh $2
         tmux rename-window -t $1 $selected_name
     fi
 }
