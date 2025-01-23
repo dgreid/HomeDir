@@ -19,12 +19,14 @@ in
 #	crosvm.nativeBuildInputs
         curl
 	delta
+        elfutils
         flex
         fzf
         gdb
         gitFull
         gnumake
         gnupg
+        libelf
         lynx
 	meson
         ncurses
