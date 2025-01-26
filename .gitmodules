@@ -49,3 +49,15 @@
 [submodule ".config/lazyvim"]
 	path = .config/lazyvim
 	url = https://github.com/dgreid/LazyVim
+[submodule ".config/nvim_raw/pack/default/start/copilot.vim"]
+	path = .config/nvim_raw/pack/default/start/copilot.vim
+	url = https://github.com/github/copilot.vim.git
+[submodule ".config/nvim_raw/pack/default/start/vim-unimpaired"]
+	path = .config/nvim_raw/pack/default/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule ".config/nvim_raw/pack/nvim/start/nvim-lspconfig"]
+	path = .config/nvim_raw/pack/nvim/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule ".config/nvim_raw/pack/default/start/vim-fugitive"]
+	path = .config/nvim_raw/pack/default/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
