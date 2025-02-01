@@ -237,9 +237,18 @@ bar {
     modifier $mod
 }
 
+# swaymsg -t get_outputs
 output HDMI-A-1 pos 0 0 scale 2
 output DP-2 pos 0 0 scale 2
 output DP-4 pos 0 0 scale 2
-output eDP-1 pos 1920 0
+output DP-3 pos 0 0 scale 2
+output eDP-1 pos 1920 120
+
+# swaymsg -t get_inputs
+input "Razer Razer DeathAdder V2 X HyperSpeed" {
+	pointer_accel 0.2
+}
+
+seat * xcursor_theme Vimix-White 64
 
 include /etc/sway/config.d/*
