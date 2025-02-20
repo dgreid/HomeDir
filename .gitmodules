@@ -61,3 +61,6 @@
 [submodule ".config/nvim_raw/pack/default/start/vim-fugitive"]
 	path = .config/nvim_raw/pack/default/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".config/nvim_raw/pack/default/start/fzf-lua"]
+	path = .config/nvim_raw/pack/default/start/fzf-lua
+	url = https://github.com/ibhagwan/fzf-lua.git
