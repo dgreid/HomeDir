@@ -22,8 +22,8 @@
    ss = show --stat
    st = status
    subup = submodule update --init --recursive
-   br = branch --sort=-committerdate
-   bra = branch -a --sort=-committerdate
+   br = branch
+   bra = branch -a
    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
    lgt = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative HEAD~25..
    lgT = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative HEAD~50..
@@ -36,11 +36,21 @@
    rbs = rebase --skip
    rank = !git shortlog -sn --no-merges
    rvfetch = fetch origin rivos/main:master
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto
+[commit]
+    verbose = true
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
+[tag]
+    sort = version:refname
 [rerere]
 	enabled = 1
+[help]
+    autocorrect = prompt
 [http]
 	cookiefile = /home/dgreid/.gitcookies
 [sendemail]
@@ -53,7 +63,15 @@
 [advice]
 	detachedHead = false
 [diff]
-	submodule = log
+    algorithm = histogram
+    colorMove = true
+    mnemonicPrefix = true
+    renames = true
+    submodule = log
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 [push]
 	recurseSubmodules = check
 [submodule]
