@@ -43,7 +43,7 @@
 [commit]
     verbose = true
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 	tool = vimdiff
 [tag]
     sort = version:refname
