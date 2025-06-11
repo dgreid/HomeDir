@@ -7,12 +7,15 @@ alias ls='ls -F --color'
 alias j='jobs'
 export EDITOR=nvim
 
-#if rivos is in the hostname, export the work srcpath.
-if [[ $(hostname) == *rivosinc* ]]; then
+#if /scratch directory exists, use it for the SRC_PATH
+if [[ -d /scratch ]]; then
     export SRC_PATH=/scratch
+    export UV_CACHE_DIR=/scratch/.uvcache
 else
     export SRC_PATH=~/src
 fi
+
+mkdir -p $UV_CACHE_DIR
 
 # make up arrow search backward
 bind '"\C-p":history-search-backward'
@@ -26,7 +29,7 @@ export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box export LESS_TERMCAP_ue=$'\E[0m' # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-export PATH=~/local/bin:~/.cargo/bin:$PATH:~/.local/bin:/opt/riscv/bin
+export PATH=~/scripts:~/local/bin:~/.cargo/bin:$PATH:~/.local/bin:/opt/riscv/bin
 
 set bell-style none
 
