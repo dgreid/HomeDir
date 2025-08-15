@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Function to get PCI Vendor and Product IDs for a device
 get_pci_ids() {
     local pci_address=$1
@@ -129,11 +131,16 @@ fi
 # Load the VFIO PCI driver
 if ! lsmod | grep -q '^vfio_pci'; then
     echo "Loading vfio-pci module..."
-    sudo modprobe vfio-pci
+    modprobe vfio-pci
 fi
 
 echo "Device $pci_address:"
-echo "  IOMMU Group: $(get_iommu_group "$pci_address")"
+iommu_group=$(get_iommu_group "$pci_address")
+if [ -z "$iommu_group" ]; then
+    echo "  Error: Device $pci_address is not in an IOMMU group"
+    exit 1
+fi
+echo "  IOMMU Group: $iommu_group"
 echo "  VID:PID: $(get_pci_ids "$pci_address")"
 echo "  Group Devices:"
 mapfile -t devices < <(get_group_devices "$pci_address")
