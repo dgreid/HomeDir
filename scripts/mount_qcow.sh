@@ -1,22 +1,19 @@
 #!/bin/bash
 
 # ==============================================================================
-# mount-qcow2.sh: Mount a QCOW2 disk image to a temporary directory.
+# mount-qcow2-all-partitions.sh: Mount all partitions from a QCOW2 disk image.
 #
 # Description:
-#   This script connects a QCOW2 image to the first available Network Block
-#   Device (NBD), probes for partitions, and mounts the first partition to a
-#   newly created directory in /tmp.
+#   This script connects a QCOW2 image to a free Network Block Device (NBD),
+#   probes for all partitions, and mounts each one to its own subdirectory
+#   inside a temporary base directory in /tmp.
 #
 # Usage:
-#   sudo ./mount-qcow2.sh <path_to_qcow2_image>
+#   sudo ./mount-qcow2-all-partitions.sh <path_to_qcow2_image>
 #
 # Dependencies:
 #   - qemu-utils (provides qemu-nbd)
 #   - util-linux (provides partprobe)
-#
-# Example:
-#   sudo ./mount-qcow2.sh /var/lib/libvirt/images/ubuntu22.04.qcow2
 #
 # ==============================================================================
 
@@ -57,12 +54,15 @@ fi
 
 # Derive names from the image path
 IMAGE_BASENAME=$(basename -- "$IMAGE_PATH")
-IMAGE_NAME="${IMAGE_BASENAME%.*}"         # a.b.c.qcow2 -> a.b.c
-MOUNT_POINT="/tmp/mount_${IMAGE_NAME}_$$" # Use PID to ensure uniqueness
+IMAGE_NAME="${IMAGE_BASENAME%.*}"
+# Create a single base directory for all mounts
+BASE_MOUNT_DIR="/tmp/mount_${IMAGE_NAME}_$$"
 
-# Create the mount point directory
-echo "▶ Creating mount directory at '$MOUNT_POINT'..."
-mkdir -p "$MOUNT_POINT"
+echo "▶ Creating base mount directory at '$BASE_MOUNT_DIR'..."
+mkdir -p "$BASE_MOUNT_DIR"
+
+# Store successfully mounted paths for cleanup
+declare -a MOUNTED_PATHS
 
 # Ensure the nbd kernel module is loaded
 echo "▶ Ensuring 'nbd' kernel module is loaded..."
@@ -72,7 +72,6 @@ modprobe nbd max_part=16
 NBD_DEVICE=""
 echo "▶ Searching for an available NBD device..."
 for i in $(seq 0 15); do
-    # Check if the /sys file for the NBD device's PID is empty
     if [[ ! -s "/sys/block/nbd${i}/pid" ]]; then
         NBD_DEVICE="/dev/nbd${i}"
         echo "✅ Found a free device: $NBD_DEVICE"
@@ -82,69 +81,101 @@ done
 
 if [[ -z "$NBD_DEVICE" ]]; then
     echo "❌ Error: No free NBD devices found (checked /dev/nbd0 through /dev/nbd15)."
-    rmdir "$MOUNT_POINT"
+    rm -r "$BASE_MOUNT_DIR"
     exit 1
 fi
 
-# Connect the QCOW2 image to the NBD device
-# We use --read-only for safety. Remove this flag if you need write access.
+# Connect the QCOW2 image. Remove --read-only if you need write access.
 echo "▶ Connecting '$IMAGE_PATH' to $NBD_DEVICE..."
 qemu-nbd --connect="$NBD_DEVICE" --read-only "$IMAGE_PATH"
 
-# Function to handle cleanup on failure
 function cleanup_on_error {
     echo "An error occurred. Cleaning up..."
-    # Check if the mount succeeded before another error
-    if mountpoint -q "$MOUNT_POINT"; then
-        umount "$MOUNT_POINT"
-    fi
+    # Unmount in reverse order of how they were added
+    for ((i = ${#MOUNTED_PATHS[@]} - 1; i >= 0; i--)); do
+        if mountpoint -q "${MOUNTED_PATHS[i]}"; then
+            echo "  - Unmounting ${MOUNTED_PATHS[i]}"
+            umount "${MOUNTED_PATHS[i]}"
+        fi
+    done
+    echo "  - Disconnecting $NBD_DEVICE"
     qemu-nbd --disconnect "$NBD_DEVICE"
-    rmdir "$MOUNT_POINT" 2>/dev/null
+    if [ -d "$BASE_MOUNT_DIR" ]; then
+        echo "  - Removing directory $BASE_MOUNT_DIR"
+        rm -r "$BASE_MOUNT_DIR"
+    fi
     echo "Cleanup complete."
 }
 
-# Trap errors and call the cleanup function
 trap cleanup_on_error ERR
 
 # Scan for partitions on the NBD device
 echo "▶ Scanning for partitions on $NBD_DEVICE..."
 partprobe "$NBD_DEVICE"
-# Add a small delay for udev to create the device nodes
 sleep 2
 
-# Identify the first partition (most common use case)
-# e.g., /dev/nbd0 becomes /dev/nbd0p1
-PARTITION="${NBD_DEVICE}p1"
+# Find all partition devices (e.g., /dev/nbd0p1, /dev/nbd0p2)
+PARTITIONS=(${NBD_DEVICE}p*)
 
-if [ ! -b "$PARTITION" ]; then
-    echo "❌ Error: Partition $PARTITION not found after probe."
-    echo "   Is the image partitioned correctly? Listing available devices:"
-    ls -l /dev/nbd*
-    exit 1
+# Check if any partitions were found
+if [ ! -b "${PARTITIONS[0]}" ]; then
+    echo "⚠️ No partitions found on $NBD_DEVICE. Cleaning up."
+    qemu-nbd --disconnect "$NBD_DEVICE"
+    rm -r "$BASE_MOUNT_DIR"
+    exit 0
 fi
 
-echo "▶ Mounting partition '$PARTITION' to '$MOUNT_POINT'..."
-mount "$PARTITION" "$MOUNT_POINT"
+echo "▶ Found ${#PARTITIONS[@]} partition(s). Attempting to mount all of them..."
+declare -a FINAL_MOUNTS
+
+for PARTITION in "${PARTITIONS[@]}"; do
+    PART_NAME=$(basename "$PARTITION")
+    PART_MOUNT_POINT="${BASE_MOUNT_DIR}/${PART_NAME}"
+
+    echo "  - Creating directory '$PART_MOUNT_POINT' for '$PARTITION'..."
+    mkdir -p "$PART_MOUNT_POINT"
+
+    # Attempt to mount, but don't exit if one fails (e.g., a swap partition)
+    if mount "$PARTITION" "$PART_MOUNT_POINT" &>/dev/null; then
+        echo "    ✅ Mounted '$PARTITION' successfully."
+        FINAL_MOUNTS+=("$PARTITION -> $PART_MOUNT_POINT")
+        MOUNTED_PATHS+=("$PART_MOUNT_POINT")
+    else
+        echo "    ⚠️ Could not mount '$PARTITION'. It might be a swap partition or an unsupported filesystem. Skipping."
+        rmdir "$PART_MOUNT_POINT"
+    fi
+done
+
+# Check if any partitions were successfully mounted
+if [ ${#MOUNTED_PATHS[@]} -eq 0 ]; then
+    echo "❌ Error: Found partitions, but failed to mount any of them."
+    exit 1 # This will trigger the ERR trap and cleanup
+fi
 
 # --- Success Message ---
-
-# Disable the error trap since we succeeded
 trap - ERR
 
 echo ""
 echo "============================================================"
-echo "✅ Success! Image mounted."
+echo "✅ Success! All mountable partitions are mounted."
 echo ""
-echo "  Image File:        $IMAGE_PATH"
-echo "  NBD Device:        $NBD_DEVICE"
-echo "  Mounted Partition: $PARTITION"
-echo "  Mount Point:       $MOUNT_POINT"
+echo "  Image File:     $IMAGE_PATH"
+echo "  NBD Device:     $NBD_DEVICE"
+echo "  Base Directory: $BASE_MOUNT_DIR"
+echo ""
+echo "  Mounted Partitions:"
+for mount_info in "${FINAL_MOUNTS[@]}"; do
+    echo "    - $mount_info"
+done
 echo "============================================================"
 echo ""
-echo "To unmount and disconnect, run the following commands:"
-echo "  sudo umount $MOUNT_POINT"
+echo "To unmount everything and clean up, run the following commands:"
+# Generate umount commands
+for mount_path in "${MOUNTED_PATHS[@]}"; do
+    echo "  sudo umount $mount_path"
+done
 echo "  sudo qemu-nbd --disconnect $NBD_DEVICE"
-echo "  sudo rmdir $MOUNT_POINT"
+echo "  sudo rm -r $BASE_MOUNT_DIR"
 echo ""
 
 exit 0
