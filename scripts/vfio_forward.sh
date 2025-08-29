@@ -15,6 +15,19 @@ get_iommu_group() {
     echo ${iommu_group##*/}
 }
 
+# Function to check if a device is already bound to vfio-pci
+is_bound_to_vfio() {
+    local pci_address=$1
+    local driver_path="/sys/bus/pci/devices/${pci_address}/driver"
+
+    if [ -e "$driver_path" ]; then
+        local current_driver=$(basename $(readlink "$driver_path"))
+        [ "$current_driver" = "vfio-pci" ]
+    else
+        false
+    fi
+}
+
 # Function to unbind a PCI device from its current driver
 unbind_pci_device() {
     local pci_address=$1
@@ -126,6 +139,16 @@ if [ -z "$pci_address" ]; then
     echo "Options:"
     echo "  --unbind-all    Skip all confirmation prompts"
     exit 1
+fi
+
+# Check if device is already bound to vfio-pci
+if is_bound_to_vfio "$pci_address"; then
+    iommu_group=$(get_iommu_group "$pci_address")
+    if [ -n "$iommu_group" ]; then
+        echo "Device $pci_address is already bound to vfio-pci"
+        echo "VFIO device available at: /dev/vfio/$iommu_group"
+        exit 0
+    fi
 fi
 
 # Load the VFIO PCI driver
