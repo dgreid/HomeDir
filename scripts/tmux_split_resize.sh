@@ -27,12 +27,20 @@ if [ $(tmux list-panes | wc -l) -ne 3 ]; then
     exit 0
 fi
 
-# The default center width is 110 if width < 220, otherwise 212.
-# or if --fixed-center-width is passed for center_width to 110.
-if [ $width -lt 220 ]; then
-    center_width=110
+# If the script is run with a parameter, use that as the center width.
+if [ -n "$1" ]; then
+    # limit the center width to be at most the total width -2.
+    center_width=$1
+    if [ $center_width -gt $((width - 2)) ]; then
+        center_width=$((width - 2))
+    fi
 else
-    center_width=212
+    # The default center width is 110 if width < 220, otherwise 212.
+    if [ $width -lt 220 ]; then
+        center_width=110
+    else
+        center_width=212
+    fi
 fi
 for arg in "$@"; do
     if [ "$arg" == "--fixed-center-width" ]; then
