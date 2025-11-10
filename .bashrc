@@ -1,43 +1,117 @@
-#ezprompt.net generated bash prompt
-export PS1="\[\e[36m\]\W\[\e[m\]\[\e[36m\]\\$\[\e[m\] "
-alias ll='ls -l'
-alias mv='mv -i'
-alias cp='cp -i'
-alias ls='ls -F --color'
-alias j='jobs'
-export EDITOR=nvim
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
 
-#if /scratch directory exists, use it for the SRC_PATH
-if [[ -d /scratch ]]; then
-    export SRC_PATH=/scratch
-    export UV_CACHE_DIR=/scratch/.uvcache
-else
-    export SRC_PATH=~/src
+# basic shell
+HISTCONTROL=ignoreboth
+HISTSIZE=32768
+HISTFILESIZE="${HISTSIZE}"
+
+## Autocompletion
+if [[ ! -v BASH_COMPLETION_VERSINFO && -f /usr/share/bash-completion/bash_completion ]]; then
+  source /usr/share/bash-completion/bash_completion
 fi
 
-mkdir -p $UV_CACHE_DIR
+## Ensure command hashing is off for mise
+set +h
 
-# make up arrow search backward
+# File system
+if command -v eza &> /dev/null; then
+  alias ls='eza -lh --group-directories-first --icons=auto'
+  alias lsa='ls -a'
+  alias lt='eza --tree --level=2 --long --icons --git'
+  alias lta='lt -a'
+fi
+
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+
+if command -v zoxide &> /dev/null; then
+  alias cd="zd"
+  zd() {
+    if [ $# -eq 0 ]; then
+      builtin cd ~ && return
+    elif [ -d "$1" ]; then
+      builtin cd "$1"
+    else
+      z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+    fi
+  }
+fi
+
+open() {
+  xdg-open "$@" >/dev/null 2>&1 &
+}
+
+# prompt
+force_color_prompt=yes
+color_prompt=yes
+
+## Simple prompt with path in the window/pane title and caret for typing line
+## will overrid ewith spaceship if available
+export PS1=$'\uf0a9 '
+export PS1="\[\e[36m\]\W\[\e[m\]\[\e[36m\] $PS1\[\e[m\] "
+
+# helpers
+if command -v mise &> /dev/null; then
+  eval "$(mise activate bash)"
+fi
+
+if command -v starship &> /dev/null; then
+  eval "$(starship init bash)"
+fi
+
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init bash)"
+fi
+
+if command -v fzf &> /dev/null; then
+  if [[ -f /usr/share/fzf/completion.bash ]]; then
+    source /usr/share/fzf/completion.bash
+  fi
+  if [[ -f /usr/share/fzf/key-bindings.bash ]]; then
+    source /usr/share/fzf/key-bindings.bash
+  fi
+fi
+
+# env
+export SUDO_EDITOR="$EDITOR"
+export BAT_THEME=ansi
+
+# input
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+set completion-ignore-case on
+set completion-prefix-display-length 2
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# history search for what has been written
 bind '"\C-p":history-search-backward'
 bind '"\C-n":history-search-forward'
 
-#colors in the man pages
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box export LESS_TERMCAP_ue=$'\E[0m' # end underline
-export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-export PATH=~/scripts:~/local/bin:~/.cargo/bin:$PATH:~/.local/bin:/opt/riscv/bin
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
 
-set bell-style none
+# Do not autocomplete hidden files unless the pattern explicitly begins with a dot
+set match-hidden-files off
 
-#git config
-source ~/.git-completion.bash
+# Show all autocomplete results at once
+set page-completions off
 
-#iterm2 integration
-export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash" || true
+# If there are more than 200 possible completions for a word, ask to show them all
+set completion-query-items 200
 
-export MOSH_ESCAPE_KEY=""
+# Show extra file information when completing, like `ls -F` does
+set visible-stats on
+
+# Be more intelligent when autocompleting by also looking at the text after
+# the cursor. For example, when the current line is "cd ~/src/mozil", and
+# the cursor is on the "z", pressing Tab will not autocomplete it to "cd
+# ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
+# Readline used by Bash 4.)
+set skip-completed-text on
+
+# Coloring for Bash 4 tab completions.
+set colored-stats on
