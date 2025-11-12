@@ -38,6 +38,8 @@
    rvfetch = fetch origin rivos/main:master
 [branch]
     sort = -committerdate
+[init]
+    defaultBranch = master
 [column]
     ui = auto
 [commit]
