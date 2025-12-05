@@ -51,6 +51,10 @@ color_prompt=yes
 ## will overrid ewith spaceship if available
 export PS1=$'\uf0a9 '
 export PS1="\[\e[36m\]\W\[\e[m\]\[\e[36m\] $PS1\[\e[m\] "
+if [[ -z "$TMUX" ]]; then
+    # Not in tmux → show @host
+    PS1="\[\e[01;32m\]@\h\[\e[00m\]:$PS1"
+fi
 
 # helpers
 if command -v mise &>/dev/null; then
