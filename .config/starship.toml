@@ -1,6 +1,13 @@
 add_newline = true
 command_timeout = 200
-format = "[$git_branch$directory]($style)$character"
+format = "$hostname[$git_branch$directory]($style)$character"
+
+[hostname]
+ssh_only = false  # Always detect (we'll handle tmux separately)
+format = "[$hostname](bold red) "  # Customize colors/format as needed
+trim_at = "."  # Optional: trim FQDN to short hostname
+disabled = false
+detect_env_vars = ["!TMUX"]  # Show hostname ONLY if $TMUX is NOT set (i.e., not in tmux)
 
 [character]
 error_symbol = "[✗](bold cyan)"
