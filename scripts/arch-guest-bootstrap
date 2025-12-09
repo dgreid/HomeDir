@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Create a small arch disk image from a running arch system
+
+set -ex
+
+DISK_IMAGE=arch_disk.img
+
+sudo pacman -Syu --noconfirm --needed arch-install-scripts
+
+truncate -s 5G ${DISK_IMAGE}
+
+mkfs.ext4 ${DISK_IMAGE}
+
+mntdir=$(mktemp -d)
+
+sudo mount ${DISK_IMAGE} $mntdir
+
+sudo pacstrap $mntdir base base-devel
+
+sudo umount $mntdir
+
+rm -rf $mntdir
+
