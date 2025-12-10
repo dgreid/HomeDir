@@ -129,3 +129,4 @@ set skip-completed-text on
 
 # Coloring for Bash 4 tab completions.
 set colored-stats on
+. "$HOME/.cargo/env"
