@@ -6,6 +6,14 @@ HISTCONTROL=ignoreboth
 HISTSIZE=32768
 HISTFILESIZE="${HISTSIZE}"
 
+# set source directory for git repos
+
+if [[ -d /scratch ]]; then
+    export SRC_PATH=/scratch
+else
+    export SRC_PATH=$HOME/src
+fi
+
 ## Autocompletion
 if [[ ! -v BASH_COMPLETION_VERSINFO && -f /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
