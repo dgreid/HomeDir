@@ -46,6 +46,51 @@ DEBIAN_SUITE="stable"
 HOSTNAME="debian-guest"
 ROOT_PASSWORD="test0000"
 
+# Print install instructions for a missing command
+install_hint() {
+    local cmd="$1"
+    echo "  Install '$cmd' with:" >&2
+    case "$cmd" in
+        debootstrap)
+            echo "    Ubuntu/Debian: apt install debootstrap" >&2
+            echo "    Arch:          pacman -S debootstrap" >&2
+            echo "    CentOS/RHEL:   yum install epel-release && yum install debootstrap" >&2
+            ;;
+        qemu-img|qemu-nbd)
+            echo "    Ubuntu/Debian: apt install qemu-utils" >&2
+            echo "    Arch:          pacman -S qemu-img" >&2
+            echo "    CentOS/RHEL:   yum install qemu-img" >&2
+            ;;
+        mkfs.ext4)
+            echo "    Ubuntu/Debian: apt install e2fsprogs" >&2
+            echo "    Arch:          pacman -S e2fsprogs" >&2
+            echo "    CentOS/RHEL:   yum install e2fsprogs" >&2
+            ;;
+        chroot)
+            echo "    Ubuntu/Debian: apt install coreutils" >&2
+            echo "    Arch:          pacman -S coreutils" >&2
+            echo "    CentOS/RHEL:   yum install coreutils" >&2
+            ;;
+        *)
+            echo "    (no install hint available)" >&2
+            ;;
+    esac
+}
+
+check_deps() {
+    local missing=0
+    for cmd in "$@"; do
+        if ! command -v "$cmd" &>/dev/null; then
+            echo "Required command not found: $cmd" >&2
+            install_hint "$cmd"
+            missing=1
+        fi
+    done
+    if [ "$missing" -eq 1 ]; then
+        exit 1
+    fi
+}
+
 # Must run as root
 if [ "$(id -u)" -ne 0 ]; then
     echo "This script must be run as root (or via sudo)." >&2
@@ -72,13 +117,7 @@ cleanup() {
 trap cleanup EXIT
 
 if [ "$IMAGE_FORMAT" = "qcow2" ]; then
-    # Check qcow2-specific dependencies
-    for cmd in debootstrap qemu-img qemu-nbd mkfs.ext4 chroot; do
-        if ! command -v "$cmd" &>/dev/null; then
-            echo "Required command not found: $cmd" >&2
-            exit 1
-        fi
-    done
+    check_deps debootstrap qemu-img qemu-nbd mkfs.ext4 chroot
 
     # Load nbd kernel module
     modprobe nbd max_part=8
@@ -108,13 +147,7 @@ if [ "$IMAGE_FORMAT" = "qcow2" ]; then
     mount "$NBD_DEV" "$MNTDIR"
     MOUNTED=1
 else
-    # Check raw-specific dependencies
-    for cmd in debootstrap mkfs.ext4 chroot; do
-        if ! command -v "$cmd" &>/dev/null; then
-            echo "Required command not found: $cmd" >&2
-            exit 1
-        fi
-    done
+    check_deps debootstrap mkfs.ext4 chroot
 
     # Create raw image
     truncate -s "$IMAGE_SIZE" "$IMAGE_NAME"
