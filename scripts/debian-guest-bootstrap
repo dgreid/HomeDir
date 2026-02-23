@@ -1,0 +1,180 @@
+#!/bin/bash
+
+# Create a Debian guest disk image using debootstrap, suitable for VMM testing.
+# Supports qcow2 (default) or raw ext4 image formats.
+
+set -ex
+
+usage() {
+    echo "Usage: $0 [--raw] [image-name]" >&2
+    echo "  --raw    Create a raw ext4 image instead of qcow2" >&2
+    exit 1
+}
+
+IMAGE_FORMAT="qcow2"
+IMAGE_NAME=""
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --raw)
+            IMAGE_FORMAT="raw"
+            shift
+            ;;
+        -h|--help)
+            usage
+            ;;
+        -*)
+            usage
+            ;;
+        *)
+            IMAGE_NAME="$1"
+            shift
+            ;;
+    esac
+done
+
+if [ -z "$IMAGE_NAME" ]; then
+    if [ "$IMAGE_FORMAT" = "raw" ]; then
+        IMAGE_NAME="debian_guest.img"
+    else
+        IMAGE_NAME="debian_guest.qcow2"
+    fi
+fi
+
+IMAGE_SIZE="5G"
+DEBIAN_SUITE="stable"
+HOSTNAME="debian-guest"
+ROOT_PASSWORD="test0000"
+
+# Must run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run as root (or via sudo)." >&2
+    exit 1
+fi
+
+MNTDIR=$(mktemp -d)
+NBD_CONNECTED=0
+MOUNTED=0
+NBD_DEV=""
+
+cleanup() {
+    set +e
+    umount "$MNTDIR/proc" 2>/dev/null
+    umount "$MNTDIR/sys" 2>/dev/null
+    if [ "$MOUNTED" -eq 1 ]; then
+        umount "$MNTDIR"
+    fi
+    if [ "$NBD_CONNECTED" -eq 1 ]; then
+        qemu-nbd --disconnect "$NBD_DEV"
+    fi
+    rm -rf "$MNTDIR"
+}
+trap cleanup EXIT
+
+if [ "$IMAGE_FORMAT" = "qcow2" ]; then
+    # Check qcow2-specific dependencies
+    for cmd in debootstrap qemu-img qemu-nbd mkfs.ext4 chroot; do
+        if ! command -v "$cmd" &>/dev/null; then
+            echo "Required command not found: $cmd" >&2
+            exit 1
+        fi
+    done
+
+    # Load nbd kernel module
+    modprobe nbd max_part=8
+
+    # Find a free nbd device
+    for dev in /dev/nbd{0..15}; do
+        if [ -b "$dev" ] && ! lsblk "$dev" &>/dev/null; then
+            NBD_DEV="$dev"
+            break
+        fi
+    done
+    if [ -z "$NBD_DEV" ]; then
+        echo "No free nbd device found" >&2
+        exit 1
+    fi
+
+    # Create qcow2 image
+    qemu-img create -f qcow2 "$IMAGE_NAME" "$IMAGE_SIZE"
+
+    # Attach image via NBD
+    qemu-nbd --connect="$NBD_DEV" "$IMAGE_NAME"
+    NBD_CONNECTED=1
+    sleep 1
+
+    # Format and mount
+    mkfs.ext4 "$NBD_DEV"
+    mount "$NBD_DEV" "$MNTDIR"
+    MOUNTED=1
+else
+    # Check raw-specific dependencies
+    for cmd in debootstrap mkfs.ext4 chroot; do
+        if ! command -v "$cmd" &>/dev/null; then
+            echo "Required command not found: $cmd" >&2
+            exit 1
+        fi
+    done
+
+    # Create raw image
+    truncate -s "$IMAGE_SIZE" "$IMAGE_NAME"
+    mkfs.ext4 "$IMAGE_NAME"
+    mount "$IMAGE_NAME" "$MNTDIR"
+    MOUNTED=1
+fi
+
+# Packages to install beyond the base system
+EXTRA_PACKAGES="pciutils,net-tools,iproute2,iputils-ping,ethtool,trace-cmd,strace,linux-perf,openssh-server,udev,systemd,systemd-resolved,kmod,less,vim-tiny,procps,util-linux"
+
+# Debootstrap with additional packages
+debootstrap --include="$EXTRA_PACKAGES" "$DEBIAN_SUITE" "$MNTDIR"
+
+# --- Chroot configuration ---
+
+# Mount proc and sys for chroot operations
+mount -t proc proc "$MNTDIR/proc"
+mount -t sysfs sys "$MNTDIR/sys"
+
+# Set root password
+echo "root:${ROOT_PASSWORD}" | chroot "$MNTDIR" chpasswd
+
+# Set hostname
+echo "$HOSTNAME" > "$MNTDIR/etc/hostname"
+
+# Configure /etc/fstab
+cat > "$MNTDIR/etc/fstab" <<'EOF'
+/dev/vda    /    ext4    defaults    0    1
+EOF
+
+# Enable serial console getty
+chroot "$MNTDIR" systemctl enable serial-getty@ttyS0.service
+
+# Configure networking via systemd-networkd (DHCP on all ethernet interfaces)
+mkdir -p "$MNTDIR/etc/systemd/network"
+cat > "$MNTDIR/etc/systemd/network/80-dhcp.network" <<'EOF'
+[Match]
+Name=en*
+
+[Network]
+DHCP=yes
+EOF
+chroot "$MNTDIR" systemctl enable systemd-networkd.service
+
+# Enable ssh
+chroot "$MNTDIR" systemctl enable ssh.service
+
+# Enable resolved (installed above)
+chroot "$MNTDIR" systemctl enable systemd-resolved.service
+
+# Allow root login via ssh with password (for testing)
+sed -i 's/^#*PermitRootLogin.*/PermitRootLogin yes/' "$MNTDIR/etc/ssh/sshd_config"
+
+DRIVE_FORMAT="$IMAGE_FORMAT"
+if [ "$IMAGE_FORMAT" = "raw" ]; then
+    DRIVE_FORMAT="raw"
+fi
+
+echo ""
+echo "Debian guest image created: $IMAGE_NAME (${IMAGE_FORMAT})"
+echo "Boot with:"
+echo "  qemu-system-x86_64 -drive file=${IMAGE_NAME},format=${DRIVE_FORMAT} -m 1G -nographic -append \"console=ttyS0 root=/dev/vda\" -kernel <path-to-kernel>"
