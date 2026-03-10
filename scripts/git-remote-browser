@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+if ! command -v fzf &>/dev/null; then
+	echo "error: fzf is required but not found" >&2
+	exit 1
+fi
+
+declare -A repos
+
+# Linux kernel
+repos["kernel/next"]="https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git"
+repos["kernel/stable"]="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+repos["kernel/torvalds"]="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+
+# Upstream projects
+repos["cloud-hypervisor/cloud-hypervisor"]="https://github.com/cloud-hypervisor/cloud-hypervisor.git"
+repos["google/crosvm"]="https://github.com/google/crosvm.git"
+repos["qemu-project/qemu"]="https://gitlab.com/qemu-project/qemu.git"
+
+# dgreid owned repos
+for name in \
+	HomeDir \
+	adhd \
+	ansible-crostini \
+	audio \
+	chisel-tests \
+	chromium-os-manifest \
+	coreboot \
+	cros_dev \
+	crosvm \
+	docker_containers \
+	dwm \
+	linux \
+	minijail \
+	platform2 \
+	playground \
+	run_container \
+	rust_tinyalsa \
+	rust_turorial; do
+	repos["dgreid/${name}"]="https://github.com/dgreid/${name}.git"
+done
+
+# dgreid forked repos
+for name in \
+	Adv360-Pro-ZMK \
+	LazyVim \
+	Raise-Firmware \
+	Recorderjs \
+	SimpleVM \
+	buildroot \
+	cargo-fuzz \
+	fdt-rs \
+	firesim \
+	iou \
+	libc \
+	libtock-rs \
+	nfs-ganesha \
+	nix \
+	ntirpc \
+	omarchy \
+	omarchy-iso \
+	oss-fuzz \
+	pci_types \
+	pytimechart \
+	qemu \
+	qmk_firmware \
+	rice \
+	riscv-isa-manual \
+	riscv-isa-sim \
+	rust-gdb-remote-protocol \
+	salus \
+	sample \
+	sbi-rs \
+	sof \
+	soft \
+	sound-open-firmware \
+	syscall.rs \
+	tock \
+	uring-sys \
+	vhost; do
+	repos["dgreid/${name}"]="https://github.com/dgreid/${name}.git"
+done
+
+selection=$(printf '%s\n' "${!repos[@]}" | sort | fzf --prompt="remote> ") || exit 0
+echo "${repos[${selection}]}"
