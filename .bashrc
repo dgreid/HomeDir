@@ -83,6 +83,10 @@ if command -v fzf &>/dev/null; then
     fi
     if [[ -f /usr/share/fzf/key-bindings.bash ]]; then
         source /usr/share/fzf/key-bindings.bash
+        bind -m emacs-standard '"\C-t": transpose-chars'
+        bind -m vi-insert '"\C-t": transpose-chars'
+        bind -m emacs-standard -x '"\et": fzf-file-widget'
+        bind -m vi-insert -x '"\et": fzf-file-widget'
     fi
 fi
 
