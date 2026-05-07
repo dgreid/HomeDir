@@ -94,6 +94,7 @@ fi
 export EDITOR="nvim"
 export SUDO_EDITOR="$EDITOR"
 export BAT_THEME=ansi
+export GPG_TTY=$(tty)
 
 # input
 set meta-flag on
